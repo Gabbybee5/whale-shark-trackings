@@ -30,12 +30,41 @@ main.content.page-columns {
 }
 
 .hero-banner {
-  background: linear-gradient(135deg, #07192f 0%, #0d3b66 55%, #14638f 100%);
+  background: #07192f;
   color: #ffffff;
-  padding: 2.5rem 2.5rem;
+  padding: 2.75rem 2.5rem;
   border-radius: 16px;
   margin: 1.5rem 0 1.75rem 0;
-  box-shadow: 0 12px 30px rgba(7, 25, 47, 0.18);
+  box-shadow: 0 12px 30px rgba(7, 25, 47, 0.22);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-bg-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 52%;
+  opacity: 0.62;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero-banner::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(100deg, rgba(7, 25, 47, 0.94) 0%, rgba(13, 59, 102, 0.80) 50%, rgba(13, 59, 102, 0.22) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 680px;
 }
 
 .hero-eyebrow {
@@ -84,36 +113,118 @@ main.content.page-columns {
   border-bottom: 2px solid #f1f5f9;
   padding-bottom: 0.6rem;
 }
+
+.split-card {
+  display: grid;
+  grid-template-columns: 1.35fr 0.85fr;
+  background: #ffffff;
+  border-radius: 16px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.06);
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+}
+
+.split-card-body {
+  padding: 1.85rem 2rem;
+}
+
+.split-card-body h2 {
+  margin-top: 0;
+  color: #0f172a;
+  font-weight: 700;
+  font-size: 1.35rem;
+  border-bottom: 2px solid #f1f5f9;
+  padding-bottom: 0.6rem;
+}
+
+.split-card-media {
+  position: relative;
+  min-height: 300px;
+  background: #07192f;
+}
+
+.split-card-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 35%;
+  display: block;
+}
+
+.split-card-caption {
+  position: absolute;
+  left: 0.85rem;
+  right: 0.85rem;
+  bottom: 0.85rem;
+  background: rgba(7, 25, 47, 0.76);
+  backdrop-filter: blur(6px);
+  color: #e2e8f0;
+  font-size: 0.78rem;
+  line-height: 1.4;
+  padding: 0.45rem 0.7rem;
+  border-radius: 8px;
+  border: 1px solid rgba(125, 211, 252, 0.22);
+}
+
+@media (max-width: 820px) {
+  .split-card {
+    grid-template-columns: 1fr;
+  }
+  .split-card-media {
+    min-height: 240px;
+  }
+}
 </style>
 
 <div class="hero-banner">
-  <div class="hero-eyebrow">Methodology & Data Guide</div>
-  <h1 class="hero-title">About the Whale Shark & Beluga Whale Graphic</h1>
-  <p class="hero-subtitle">
-    Understanding the axes and interactive controls behind the visualization.
-  </p>
+  <img class="hero-bg-img" src="images/jeremiah-del-mar-0lgdsiAdg3k-unsplash.jpg" alt="Whale shark gliding over coral reef in sunlit blue water">
+  <div class="hero-content">
+    <div class="hero-eyebrow">About &amp; Author</div>
+    <h1 class="hero-title">About This Project</h1>
+    <p class="hero-subtitle">
+      Created by <strong>Gabriella Buccellato</strong> at <a href="https://www.ncf.edu/" target="_blank" rel="noopener" style="color:#7dd3fc;text-decoration:underline;">New College of Florida</a> — exploring why researchers tagged whale sharks in northeastern Australia and what makes this corner of the Coral Sea unique.
+    </p>
+  </div>
 </div>
 ```
 
 <div class="info-card">
 
-## How to Read the Axes
+## Author & Project Information
 
-- **Horizontal Axis (X-Axis) — Observation Date Span Elapsed (Days Since First Sighting):**  
-  Measures how many days have passed since that specific individual shark (or the Beaufort Sea mooring) was first recorded. Placing every track on a "Days Since First Sighting" scale lets us directly compare observation durations even when the recordings occurred in different calendar years.
-- **Vertical Axis (Y-Axis) — Cumulative Spotting / Tracking Count:**  
-  Counts each new detection in chronological order ($1, 2, 3, \dots, N$). A steep upward curve means frequent detections over a short period, while a flatter curve means detections were spread out over a longer time span.
-- **Color Grouping:**  
-  Dark teal points represent **Whale Shark Trackings (Coral Sea)** and light blue points represent **Beluga Whale Detections (Beaufort Sea)**.
+- **Author:** Gabriella Buccellato
+- **Contact:** [g.buccellato28@ncf.edu](mailto:g.buccellato28@ncf.edu)
+- **GitHub Account:** [github.com/Gabbybee5](https://github.com/Gabbybee5)
+- **Final Project Repository:** [https://github.com/Gabbybee5/whale-shark-trackings](https://github.com/Gabbybee5/whale-shark-trackings)
+- **Institution:** [New College of Florida](https://www.ncf.edu/)
 
 </div>
 
 <div class="info-card">
 
-## Using the Interactive Controls
+## Why Were the Whale Sharks Tracked?
 
-- **Top Filter Sliders & Dropdown:** Filter the points in real time by elapsed days, cumulative spotting count, or select a single named Whale Shark or the Beluga Whale dataset.
-- **Timeframe View Menu (Top-Left of Plot):** Switch between the full 4,006-day span, a log-scale X-axis that spreads short and long tracks evenly, or zoomed-in views of the 0–400 day overlap window.
-- **Bottom Range Slider:** Drag the handles at the bottom of the plot to zoom dynamically into any window of elapsed days.
+Whale sharks (*Rhincodon typus*) are listed as globally **Endangered**, yet for decades almost nothing was known about where they travel in the southwest Pacific. Researchers from the **Biopixel Oceans Foundation** and **James Cook University** combined historical citizen-science sightings (2007–2024, via *Sharkbook* and *Eye on the Reef*) with satellite tags placed on **18 individual sharks** (2018–2023) to answer key conservation questions:
+
+- **Mapping Hidden Migrations:** Satellite telemetry reveals whether sharks stay on local reefs year-round or roam across deep ocean basins and international borders toward Papua New Guinea and the wider Indo-Pacific.
+- **Guiding Marine Protection:** Tracking where sharks surface and travel helps pinpoint overlaps with commercial shipping lanes, fishing activity, and protected zones inside the Great Barrier Reef and Coral Sea Marine Parks.
 
 </div>
+
+```{=html}
+<div class="split-card">
+  <div class="split-card-body">
+    <h2>Why Were They Recorded in This Specific Area?</h2>
+    <p>Only about 30 whale shark aggregation sites are known worldwide, and until recently <strong>none</strong> had been confirmed anywhere on Australia's east coast or in the southwest Pacific:</p>
+    <ul>
+      <li><strong>The Wreck Bay Discovery:</strong> Sightings and tagging centered on <strong>Wreck Bay</strong> at the remote northern tip of the Great Barrier Reef (along with outer-shelf waters off Cairns and Cooktown)—the first whale shark aggregation ever documented in eastern Australia.</li>
+      <li><strong>A Seasonal Feeding Hotspot:</strong> Along this edge of the Coral Sea, steep outer-reef drop-offs meet nutrient-rich ocean upwellings. During late spring and early austral summer (November–December), mass coral and fish spawning events trigger dense plankton blooms that draw whale sharks to the surface in predictable numbers, giving researchers a rare window to find and tag them.</li>
+    </ul>
+  </div>
+  <div class="split-card-media">
+    <img src="images/kevin-charit-bZc2GI4LR2Q-unsplash.jpg" alt="Two whale sharks aggregating near the ocean surface">
+    <div class="split-card-caption">Seasonal surface feeding brings multiple whale sharks together into sunlit Coral Sea waters.</div>
+  </div>
+</div>
+```

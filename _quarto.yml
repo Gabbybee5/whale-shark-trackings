@@ -3,16 +3,18 @@ project:
   output-dir: _site
   render:
     - overview.qmd
+    - about.qmd
     - tracking-patterns.qmd
     - meet-the-sharks.qmd
+    - research-process.qmd
     - ecology-conservation.qmd
     - "*.qmd"
 
 website:
   title: "Whale Shark Tracking Explorer"
   navbar:
-    background: "#0a2540"
-    foreground: "#ffffff"
+    background: "#0b1e36"
+    foreground: "#f1f5f9"
     left:
       - href: overview.qmd
         text: "Overview"
@@ -20,11 +22,456 @@ website:
         text: "Tracking Patterns"
       - href: meet-the-sharks.qmd
         text: "Meet the Sharks"
+      - href: research-process.qmd
+        text: "Research Process"
       - href: ecology-conservation.qmd
         text: "Ecology & Conservation"
+      - href: about.qmd
+        text: "About"
 
 format:
   html:
     theme: cosmo
     page-layout: full
     embed-resources: true
+    include-after-body:
+      text: |
+        <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+
+        @view-transition {
+          navigation: auto;
+        }
+
+        ::view-transition-old(root),
+        ::view-transition-new(root) {
+          animation-duration: 0.45s;
+          animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        :root {
+          --ocean-bg-top: #102a49;
+          --ocean-bg-mid: #163a63;
+          --ocean-bg-bottom: #0d223c;
+          --ocean-panel: rgba(9, 25, 46, 0.52);
+          --ocean-panel-sub: rgba(7, 20, 38, 0.48);
+          --ocean-cyan: #22d3ee;
+          --ocean-turquoise: #2dd4bf;
+          --ocean-coral: #ff8573;
+          --ocean-text: #f1f5f9;
+          --ocean-muted: #b6c8dc;
+          --ocean-border: rgba(125, 211, 252, 0.24);
+        }
+
+        html {
+          scroll-behavior: smooth;
+        }
+
+        /* Lighter deep-ocean blue background + clean sans-serif */
+        html, body {
+          font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+          background-color: var(--ocean-bg-top) !important;
+          background-image:
+            radial-gradient(circle at 16% 14%, rgba(34, 211, 238, 0.18) 0%, transparent 46%),
+            radial-gradient(circle at 84% 72%, rgba(45, 212, 191, 0.14) 0%, transparent 50%),
+            linear-gradient(180deg, var(--ocean-bg-top) 0%, var(--ocean-bg-mid) 50%, var(--ocean-bg-bottom) 100%) !important;
+          background-attachment: fixed !important;
+          color: var(--ocean-text) !important;
+          overflow-x: hidden;
+        }
+
+        /* Smooth page fade-in for cross-section navigation */
+        main.content {
+          animation: oceanPageFade 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        @keyframes oceanPageFade {
+          from { opacity: 0; transform: translateY(10px); }
+          to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Slow, smooth underwater ambient light movement */
+        body::before {
+          content: "";
+          position: fixed;
+          inset: -20%;
+          pointer-events: none;
+          z-index: 0;
+          background:
+            radial-gradient(ellipse 55% 40% at 28% 28%, rgba(56, 189, 248, 0.12), transparent 70%),
+            radial-gradient(ellipse 45% 38% at 74% 66%, rgba(255, 133, 115, 0.06), transparent 70%);
+          animation: underwaterCurrent 22s ease-in-out infinite alternate;
+        }
+
+        @keyframes underwaterCurrent {
+          0%   { transform: translate3d(-2%, -1.5%, 0) scale(1); }
+          50%  { transform: translate3d(2%, 1.5%, 0) scale(1.05); }
+          100% { transform: translate3d(-1%, 2.5%, 0) scale(1.02); }
+        }
+
+        #quarto-content, main.content {
+          position: relative;
+          z-index: 1;
+        }
+
+        /* Translucent ocean navbar */
+        #quarto-header .navbar {
+          background: rgba(9, 24, 44, 0.78) !important;
+          backdrop-filter: blur(16px);
+          -webkit-backdrop-filter: blur(16px);
+          border-bottom: 1px solid var(--ocean-border) !important;
+        }
+
+        #quarto-header .navbar-brand,
+        #quarto-header .nav-link {
+          color: var(--ocean-text) !important;
+          font-weight: 400;
+          letter-spacing: 0.01em;
+          transition: color 0.3s ease, opacity 0.3s ease;
+        }
+
+        #quarto-header .nav-link:hover,
+        #quarto-header .nav-link.active {
+          color: var(--ocean-cyan) !important;
+        }
+
+        /* Large, minimal headings */
+        h1, h2, h3, .hero-title, .plot-card-title, .map-card-title, .step-title {
+          font-family: 'Plus Jakarta Sans', sans-serif !important;
+          font-weight: 300 !important;
+          letter-spacing: -0.025em !important;
+          color: #ffffff !important;
+        }
+
+        .hero-title {
+          font-size: clamp(2.35rem, 3.8vw, 3.15rem) !important;
+          line-height: 1.15 !important;
+        }
+
+        .info-card h2, .split-card-body h2, .plot-card-title, .map-card-title {
+          font-size: 1.5rem !important;
+          border-bottom-color: rgba(148, 163, 184, 0.2) !important;
+        }
+
+        /* Hero banner + soft coral secondary accent eyebrow */
+        .hero-banner {
+          background: linear-gradient(135deg, rgba(8, 24, 45, 0.72) 0%, rgba(13, 52, 86, 0.62) 58%, rgba(17, 102, 108, 0.48) 100%) !important;
+          backdrop-filter: blur(18px);
+          -webkit-backdrop-filter: blur(18px);
+          border: 1px solid rgba(56, 189, 248, 0.32) !important;
+          box-shadow: 0 18px 40px rgba(4, 12, 26, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+        }
+
+        .hero-eyebrow {
+          color: var(--ocean-coral) !important;
+          background: rgba(255, 133, 115, 0.14) !important;
+          border: 1px solid rgba(255, 133, 115, 0.42) !important;
+          font-weight: 600 !important;
+          letter-spacing: 0.12em !important;
+        }
+
+        .hero-subtitle {
+          color: #dbeafe !important;
+          font-weight: 300;
+        }
+
+        /* Frosted translucent data cards that harmonize with the ocean blue backdrop */
+        .info-card, .split-card, .plot-card, .map-card, .filter-row, .flow-overview, .process-step, .shark-subsection {
+          background: linear-gradient(165deg, rgba(255, 255, 255, 0.08) 0%, var(--ocean-panel) 100%) !important;
+          backdrop-filter: blur(16px);
+          -webkit-backdrop-filter: blur(16px);
+          border: 1px solid var(--ocean-border) !important;
+          box-shadow: 0 14px 34px rgba(5, 15, 30, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+          color: var(--ocean-text) !important;
+          transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+                      border-color 0.45s ease,
+                      box-shadow 0.45s ease,
+                      background 0.45s ease;
+        }
+
+        .info-card:hover, .split-card:hover, .process-step:hover, .shark-subsection:hover {
+          transform: translateY(-3px);
+          border-color: rgba(34, 211, 238, 0.48) !important;
+          box-shadow: 0 18px 40px rgba(5, 15, 30, 0.42), inset 0 1px 0 rgba(255, 255, 255, 0.16) !important;
+        }
+
+        .step-media::after {
+          background: linear-gradient(90deg, rgba(9, 25, 46, 0.45) 0%, rgba(9, 25, 46, 0.05) 100%) !important;
+        }
+
+        /* Smooth visual flow connector between consecutive educational sections */
+        .info-card, .split-card {
+          position: relative;
+          margin-bottom: 2.35rem !important;
+        }
+
+        .split-card::after,
+        .info-card:not(:last-child)::after {
+          content: "";
+          position: absolute;
+          left: 50%;
+          bottom: -2.35rem;
+          transform: translateX(-50%);
+          width: 2px;
+          height: 2.35rem;
+          background: linear-gradient(180deg, rgba(34, 211, 238, 0.45), rgba(255, 133, 115, 0.28), rgba(34, 211, 238, 0.08));
+          pointer-events: none;
+        }
+
+        .seasonal-grid .info-card::after,
+        main.content > .info-card:last-of-type::after {
+          display: none !important;
+        }
+
+        .shark-subsection {
+          border-top: 3px solid var(--ocean-cyan) !important;
+        }
+
+        .plot-card-header, .map-card-header, .shark-selector-bar, .ws-top-toggles {
+          border-bottom-color: rgba(148, 163, 184, 0.2) !important;
+        }
+
+        .map-caption, .step-desc, .deck-counter, .ws-status-bar {
+          color: #dbeafe !important;
+          border-top-color: rgba(148, 163, 184, 0.2) !important;
+        }
+
+        a, strong {
+          color: #ffffff;
+        }
+
+        .info-card a, .split-card a {
+          color: var(--ocean-cyan) !important;
+        }
+
+        code {
+          background: rgba(34, 211, 238, 0.14) !important;
+          color: var(--ocean-cyan) !important;
+        }
+
+        /* Timeline & nested translucent sub-panels */
+        .process-timeline::before {
+          background: linear-gradient(180deg, var(--ocean-cyan) 0%, var(--ocean-turquoise) 55%, var(--ocean-coral) 100%) !important;
+          opacity: 0.7;
+        }
+
+        .step-connector {
+          color: var(--ocean-cyan) !important;
+          opacity: 0.75 !important;
+        }
+
+        .ws-controls-panel, .ws-slider-box, .shark-meters, .shark-subsection li, .step-icon {
+          background: var(--ocean-panel-sub) !important;
+          border-color: rgba(148, 163, 184, 0.2) !important;
+          color: var(--ocean-text) !important;
+        }
+
+        .shark-subsection li {
+          border-left: 3px solid var(--ocean-cyan) !important;
+        }
+
+        .shark-subsection li:last-child {
+          border-left-color: var(--ocean-coral) !important;
+        }
+
+        .page-columns .column-page table,
+        .data-table {
+          background: rgba(7, 20, 38, 0.6) !important;
+          color: var(--ocean-text) !important;
+          border-radius: 10px;
+          overflow: hidden;
+        }
+
+        .data-table th {
+          background: rgba(7, 20, 38, 0.88) !important;
+          color: var(--ocean-cyan) !important;
+          border-bottom-color: var(--ocean-border) !important;
+        }
+
+        .data-table td {
+          background: transparent !important;
+          border-bottom-color: rgba(148, 163, 184, 0.18) !important;
+          color: var(--ocean-text) !important;
+        }
+
+        .data-table tbody tr:nth-child(even) td {
+          background: rgba(255, 255, 255, 0.04) !important;
+        }
+
+        /* Accents: Turquoise primary & Soft Coral secondary */
+        .panel-tabset .nav-tabs {
+          border-bottom-color: var(--ocean-border) !important;
+        }
+
+        .panel-tabset .nav-tabs .nav-link,
+        .ws-btn, .shark-pill, .action-btn, .fav-btn, .meta-chip {
+          background: rgba(9, 25, 46, 0.62) !important;
+          color: #dbeafe !important;
+          border-color: rgba(148, 163, 184, 0.28) !important;
+          transition: all 0.3s ease !important;
+        }
+
+        .panel-tabset .nav-tabs .nav-link:hover,
+        .ws-btn:hover, .shark-pill:hover, .action-btn:hover {
+          border-color: var(--ocean-cyan) !important;
+          color: #ffffff !important;
+        }
+
+        .panel-tabset .nav-tabs .nav-link.active,
+        .ws-btn.active, .shark-pill.active {
+          background: linear-gradient(135deg, rgba(14, 116, 144, 0.9) 0%, rgba(45, 212, 191, 0.8) 100%) !important;
+          border-color: var(--ocean-cyan) !important;
+          color: #ffffff !important;
+          box-shadow: 0 0 18px rgba(34, 211, 238, 0.25);
+        }
+
+        .ws-date-badge, .action-btn.surprise-btn, .fav-btn.favorited, .fav-btn:hover {
+          background: rgba(255, 133, 115, 0.16) !important;
+          color: var(--ocean-coral) !important;
+          border-color: rgba(255, 133, 115, 0.45) !important;
+        }
+
+        .step-label, .flow-pill {
+          color: var(--ocean-turquoise) !important;
+        }
+
+        .flow-arrow {
+          color: rgba(125, 211, 252, 0.55) !important;
+        }
+
+        .step-node {
+          border-color: var(--ocean-bg-mid) !important;
+          box-shadow: 0 0 18px rgba(34, 211, 238, 0.32) !important;
+        }
+
+        .meter-label, .ws-toggle-label, .ws-range-wrap {
+          color: var(--ocean-muted) !important;
+        }
+
+        .meter-val, .filter-row .control-label, .ws-field label, .ws-slider-header {
+          color: #ffffff !important;
+        }
+
+        .meter-track {
+          background: rgba(148, 163, 184, 0.22) !important;
+        }
+
+        .meter-fill {
+          background: linear-gradient(90deg, var(--ocean-cyan) 0%, var(--ocean-coral) 100%) !important;
+        }
+
+        /* Form selects & Crosstalk controls on dark panels */
+        .ws-field select, .selectize-input, .selectize-dropdown {
+          background: rgba(7, 20, 38, 0.85) !important;
+          color: #f8fafc !important;
+          border-color: rgba(56, 189, 248, 0.32) !important;
+        }
+
+        .selectize-dropdown-content .option {
+          color: #f1f5f9 !important;
+        }
+
+        .selectize-dropdown-content .option.active {
+          background: rgba(34, 211, 238, 0.25) !important;
+          color: #ffffff !important;
+        }
+
+        .irs--shiny .irs-bar {
+          background: var(--ocean-cyan) !important;
+          border-color: var(--ocean-cyan) !important;
+        }
+
+        .irs--shiny .irs-from, .irs--shiny .irs-to, .irs--shiny .irs-single {
+          background-color: var(--ocean-coral) !important;
+        }
+
+        .irs--shiny .irs-grid-text, .irs--shiny .irs-min, .irs--shiny .irs-max {
+          color: #cbd5e1 !important;
+        }
+
+        .ws-range-wrap input[type="range"] {
+          accent-color: var(--ocean-cyan) !important;
+        }
+
+        /* Dark ocean Leaflet popups & controls */
+        .leaflet-container {
+          background: #09192e !important;
+          border: 1px solid rgba(56, 189, 248, 0.25) !important;
+        }
+
+        .leaflet-popup-content-wrapper, .leaflet-popup-tip {
+          background: rgba(9, 25, 46, 0.94) !important;
+          color: #f1f5f9 !important;
+          border: 1px solid rgba(34, 211, 238, 0.32);
+          backdrop-filter: blur(10px);
+        }
+
+        .leaflet-control-layers, .leaflet-bar a, .info.legend {
+          background: rgba(9, 25, 46, 0.88) !important;
+          color: #f1f5f9 !important;
+          border-color: rgba(56, 189, 248, 0.28) !important;
+        }
+
+        /* Smooth scroll-triggered reveal & fade transitions between sections */
+        .ocean-reveal {
+          opacity: 0;
+          transform: translateY(28px) scale(0.99);
+          filter: blur(3px);
+          transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+                      transform 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+                      filter 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+          will-change: opacity, transform, filter;
+        }
+
+        .ocean-reveal.is-visible {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+          filter: blur(0);
+        }
+
+        /* Smooth crossfade when switching tabs */
+        .tab-pane.fade, .tab-pane {
+          transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          body::before, main.content { animation: none; }
+          .ocean-reveal { opacity: 1; transform: none; filter: none; transition: none; }
+        }
+        </style>
+        <script>
+        document.addEventListener("DOMContentLoaded", function () {
+          const targets = document.querySelectorAll(
+            ".hero-banner, .info-card, .split-card, .plot-card, .map-card, .filter-row, .flow-overview, .process-step, .seasonal-grid"
+          );
+          targets.forEach((el, i) => {
+            el.classList.add("ocean-reveal");
+            el.style.transitionDelay = Math.min(i * 65, 260) + "ms";
+          });
+
+          const observer = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  entry.target.classList.add("is-visible");
+                  observer.unobserve(entry.target);
+                }
+              });
+            },
+            { threshold: 0.08, rootMargin: "0px 0px -35px 0px" }
+          );
+
+          targets.forEach((el) => observer.observe(el));
+
+          // Smoothly reveal cards inside newly activated tabs
+          document.querySelectorAll('.panel-tabset .nav-link, [data-bs-toggle="tab"]').forEach((tab) => {
+            tab.addEventListener("click", () => {
+              setTimeout(() => {
+                document.querySelectorAll(".tab-pane.active .ocean-reveal").forEach((el) => {
+                  el.classList.add("is-visible");
+                });
+              }, 50);
+            });
+          });
+        });
+        </script>

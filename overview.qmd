@@ -37,14 +37,41 @@ main.content.page-columns {
 
 /* Ocean-themed Hero Banner */
 .hero-banner {
-  background: linear-gradient(135deg, #07192f 0%, #0d3b66 55%, #14638f 100%);
+  background: #07192f;
   color: #ffffff;
-  padding: 2.75rem 2.5rem;
+  padding: 2.85rem 2.5rem;
   border-radius: 16px;
   margin: 1.5rem 0 1.75rem 0;
-  box-shadow: 0 12px 30px rgba(7, 25, 47, 0.18);
+  box-shadow: 0 12px 30px rgba(7, 25, 47, 0.22);
   position: relative;
   overflow: hidden;
+}
+
+.hero-bg-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 75% 42%;
+  opacity: 0.68;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero-banner::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(100deg, rgba(7, 25, 47, 0.94) 0%, rgba(13, 59, 102, 0.80) 48%, rgba(13, 59, 102, 0.18) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 780px;
 }
 
 .hero-eyebrow {
@@ -241,13 +268,18 @@ all_occurrences <- whale_shark_raw |>
 shared_occurrences <- SharedData$new(all_occurrences)
 ```
 
+```{=html}
 <div class="hero-banner">
-  <div class="hero-eyebrow">Coral Sea Satellite Telemetry & Sightings</div>
-  <h1 class="hero-title">Coral Sea Whale Sharks: Spottings & Observation Spans</h1>
-  <p class="hero-subtitle">
-    Explore <strong>2,391 tracking and sighting records</strong> of <strong>Whale Sharks (<em>Rhincodon typus</em>)</strong> across Australia's Coral Sea — comparing 18 satellite-tagged individuals against a decade of opportunistic sightings. Select a graph tab below to explore the interactive scatter plot or the summary bar graphs.
-  </p>
+  <img class="hero-bg-img" src="images/brynlld-qJiaYbrxcy4-unsplash.jpg" alt="Whale shark ascending toward sunlit ocean surface">
+  <div class="hero-content">
+    <div class="hero-eyebrow">Coral Sea Satellite Telemetry & Sightings</div>
+    <h1 class="hero-title">Coral Sea Whale Sharks: Spottings & Observation Spans</h1>
+    <p class="hero-subtitle">
+      Explore <strong>2,391 tracking and sighting records</strong> of <strong>Whale Sharks (<em>Rhincodon typus</em>)</strong> across Australia's Coral Sea — comparing 18 satellite-tagged individuals against a decade of opportunistic sightings. Select a graph tab below to explore the interactive scatter plot or the summary bar graphs.
+    </p>
+  </div>
 </div>
+```
 
 ::: {.panel-tabset}
 

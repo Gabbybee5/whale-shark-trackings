@@ -34,12 +34,41 @@ main.content.page-columns {
 }
 
 .hero-banner {
-  background: linear-gradient(135deg, #07192f 0%, #0d3b66 55%, #0f766e 100%);
+  background: #07192f;
   color: #ffffff;
-  padding: 2.5rem 2.5rem;
+  padding: 2.75rem 2.5rem;
   border-radius: 16px;
   margin: 1.5rem 0 1.75rem 0;
-  box-shadow: 0 12px 30px rgba(7, 25, 47, 0.18);
+  box-shadow: 0 12px 30px rgba(7, 25, 47, 0.22);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-bg-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 65% 48%;
+  opacity: 0.64;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero-banner::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(100deg, rgba(7, 25, 47, 0.94) 0%, rgba(13, 59, 102, 0.80) 48%, rgba(15, 118, 110, 0.22) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 780px;
 }
 
 .hero-eyebrow {
@@ -298,11 +327,14 @@ main.content.page-columns {
 </style>
 
 <div class="hero-banner">
-  <div class="hero-eyebrow">Coral Sea Spatial Telemetry</div>
-  <h1 class="hero-title">Whale Shark Tracking & Spotting Patterns</h1>
-  <p class="hero-subtitle">
-    Explore the geographic movement corridors of <strong>Whale Sharks (<em>Rhincodon typus</em>)</strong> across Australia's Great Barrier Reef, the Coral Sea, and Papua New Guinea — combining 18 satellite-tagged trajectories with 136 opportunistic sightings.
-  </p>
+  <img class="hero-bg-img" src="images/sebastian-pena-lambarri-Abj_zUko6Mg-unsplash.jpg" alt="Overhead view of a whale shark swimming through deep blue ocean water">
+  <div class="hero-content">
+    <div class="hero-eyebrow">Coral Sea Spatial Telemetry</div>
+    <h1 class="hero-title">Whale Shark Tracking & Spotting Patterns</h1>
+    <p class="hero-subtitle">
+      Explore the geographic movement corridors of <strong>Whale Sharks (<em>Rhincodon typus</em>)</strong> across Australia's Great Barrier Reef, the Coral Sea, and Papua New Guinea — combining 18 satellite-tagged trajectories with 136 opportunistic sightings.
+    </p>
+  </div>
 </div>
 ```
 
@@ -356,7 +388,7 @@ whale_shark_map <- whale_shark_raw |>
   mutate(
     popup_html = paste0(
       "<b>Whale Shark (", shark_name, ")</b><br>",
-      "<i>Rhincodon typus</i> &bull; <span style='color:#0f766e;font-weight:600;'>", data_type_label, "</span><br>",
+      "<i>Rhincodon typus</i> &bull; <span style='color:#22d3ee;font-weight:600;'>", data_type_label, "</span><br>",
       "<b>Shark ID:</b> ", track_id, "<br>",
       "<b>Date:</b> ", date, " (", obs_month, " ", obs_year, ")<br>",
       "<b>Location:</b> ", location_region, "<br>",
@@ -371,8 +403,14 @@ tagged_points <- whale_shark_map |> filter(is_tagged)
 sighting_points <- whale_shark_map |> filter(!is_tagged)
 
 shark_map <- leaflet(width = "100%", height = "620px") |>
-  addProviderTiles(providers$Esri.OceanBasemap, group = "Ocean Basemap") |>
-  addProviderTiles(providers$CartoDB.Positron, group = "Clean Light Map")
+  # Free Esri Dark Gray basemap (no API key required)
+  addTiles(
+    urlTemplate = "https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}",
+    attribution = "Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ",
+    options = tileOptions(maxNativeZoom = 16),
+    group = "Dark Ocean Basemap"
+  ) |>
+  addProviderTiles(providers$Esri.OceanBasemap, group = "Bathymetric Ocean Map")
 
 tagged_sharks <- tagged_points |> split(~shark_name)
 
@@ -382,9 +420,9 @@ for (shark_df in tagged_sharks) {
       data = shark_df,
       lng = ~decimalLongitude,
       lat = ~decimalLatitude,
-      color = "#0f766e",
+      color = "#22d3ee",
       weight = 2.2,
-      opacity = 0.6,
+      opacity = 0.65,
       group = "Satellite Trajectories (18 Sharks)",
       label = ~paste0("Track: Whale Shark (", shark_name, ")")
     )
@@ -396,9 +434,9 @@ shark_map <- shark_map |>
     lng = ~decimalLongitude,
     lat = ~decimalLatitude,
     radius = 4.5,
-    color = "#0d5c56",
-    fillColor = "#14b8a6",
-    fillOpacity = 0.8,
+    color = "#0891b2",
+    fillColor = "#2dd4bf",
+    fillOpacity = 0.85,
     weight = 1,
     popup = ~popup_html,
     label = ~paste0("Whale Shark (", shark_name, ") — ", date),
@@ -409,9 +447,9 @@ shark_map <- shark_map |>
     lng = ~decimalLongitude,
     lat = ~decimalLatitude,
     radius = 5.5,
-    color = "#0369a1",
-    fillColor = "#38bdf8",
-    fillOpacity = 0.85,
+    color = "#e11d48",
+    fillColor = "#ff8573",
+    fillOpacity = 0.9,
     weight = 1.5,
     popup = ~popup_html,
     label = ~paste0("Opportunistic Sighting — ", date),
@@ -419,17 +457,17 @@ shark_map <- shark_map |>
   ) |>
   addLegend(
     position = "bottomright",
-    colors = c("#14b8a6", "#0f766e", "#38bdf8"),
+    colors = c("#2dd4bf", "#22d3ee", "#ff8573"),
     labels = c(
       "Satellite Tag Points (2,255)",
       "Individual Shark Trajectories (18)",
       "Opportunistic Sightings (136)"
     ),
     title = "Coral Sea Whale Sharks",
-    opacity = 0.9
+    opacity = 0.92
   ) |>
   addLayersControl(
-    baseGroups = c("Ocean Basemap", "Clean Light Map"),
+    baseGroups = c("Dark Ocean Basemap", "Bathymetric Ocean Map"),
     overlayGroups = c(
       "Satellite Tag Points (2,255 pts)",
       "Satellite Trajectories (18 Sharks)",
@@ -549,7 +587,7 @@ shark_map
     </div>
   </div>
 
-  <div id="ws-interactive-map" style="width: 100%; height: 620px; border-radius: 12px; border: 1px solid #e2e8f0;"></div>
+  <div id="ws-interactive-map" style="width: 100%; height: 620px; border-radius: 12px; border: 1px solid rgba(56, 189, 248, 0.28);"></div>
 
   <div class="map-caption">
     <strong>How to Explore:</strong> Click any marker to inspect sighting metadata (date, shark ID, sex/life stage, and coordinates). Switch between <strong>Historical Sightings</strong> (2007–2018 opportunistic encounters) and <strong>Satellite Tracking</strong> (2018–2024 tagged whale sharks), toggle the <strong>Concentration Heatmap</strong> to highlight aggregation hotspots such as Far Northern GBR &amp; Osprey Reef, or drag the <strong>Date Range Slider</strong> to watch spatial patterns shift over time.
@@ -594,11 +632,11 @@ document.addEventListener("DOMContentLoaded", function () {
       palCanvas.height = 1;
       const ctx = palCanvas.getContext("2d");
       const grad = ctx.createLinearGradient(0, 0, 256, 0);
-      grad.addColorStop(0.15, "#38bdf8");
-      grad.addColorStop(0.4, "#2dd4bf");
-      grad.addColorStop(0.65, "#facc15");
-      grad.addColorStop(0.85, "#fb923c");
-      grad.addColorStop(1.0, "#ef4444");
+      grad.addColorStop(0.15, "#06b6d4");
+      grad.addColorStop(0.42, "#2dd4bf");
+      grad.addColorStop(0.7, "#fda4af");
+      grad.addColorStop(0.88, "#ff8573");
+      grad.addColorStop(1.0, "#fb7185");
       ctx.fillStyle = grad;
       ctx.fillRect(0, 0, 256, 1);
       return ctx.getImageData(0, 0, 256, 1).data;
@@ -657,17 +695,17 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  // Initialize Leaflet map
+  // Initialize Leaflet map with Dark Ocean Basemap
   const wsMap = L.map("ws-interactive-map", { preferCanvas: true });
+  const darkOceanTiles = L.tileLayer(
+    "https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}",
+    { attribution: "Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ", maxNativeZoom: 16 }
+  ).addTo(wsMap);
   const oceanTiles = L.tileLayer(
     "https://server.arcgisonline.com/ArcGIS/rest/services/Ocean/World_Ocean_Base/MapServer/tile/{z}/{y}/{x}",
     { attribution: "Tiles &copy; Esri" }
-  ).addTo(wsMap);
-  const lightTiles = L.tileLayer(
-    "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
-    { attribution: "&copy; OpenStreetMap &copy; CARTO" }
   );
-  L.control.layers({ "Ocean Basemap": oceanTiles, "Clean Light Map": lightTiles }, null, { collapsed: true }).addTo(wsMap);
+  L.control.layers({ "Dark Ocean Basemap": darkOceanTiles, "Bathymetric Ocean Map": oceanTiles }, null, { collapsed: true }).addTo(wsMap);
 
   const lats = allData.map(d => d.lat);
   const lngs = allData.map(d => d.lng);
@@ -681,21 +719,22 @@ document.addEventListener("DOMContentLoaded", function () {
   const heatLayer = new CanvasHeatLayer([]);
   heatLayer.addTo(wsMap);
 
-  // Add compact legend
+  // Add compact dark-ocean legend
   const legend = L.control({ position: "bottomright" });
   legend.onAdd = function () {
     const div = L.DomUtil.create("div", "info legend");
-    div.style.background = "rgba(255,255,255,0.94)";
+    div.style.background = "rgba(9, 25, 46, 0.9)";
+    div.style.color = "#f1f5f9";
     div.style.padding = "8px 11px";
     div.style.borderRadius = "8px";
-    div.style.border = "1px solid #cbd5e1";
+    div.style.border = "1px solid rgba(56, 189, 248, 0.3)";
     div.style.fontSize = "12px";
     div.style.lineHeight = "1.5";
     div.innerHTML =
       "<b>Sighting Key</b><br>" +
-      "<span style='display:inline-block;width:10px;height:10px;border-radius:50%;background:#38bdf8;border:1.5px solid #0369a1;margin-right:6px;'></span>Historical Sighting<br>" +
-      "<span style='display:inline-block;width:10px;height:10px;border-radius:50%;background:#14b8a6;border:1.5px solid #0d5c56;margin-right:6px;'></span>Satellite Tracking<br>" +
-      "<span style='display:inline-block;width:54px;height:8px;border-radius:4px;background:linear-gradient(90deg,#38bdf8,#2dd4bf,#facc15,#ef4444);margin-right:6px;'></span>Density";
+      "<span style='display:inline-block;width:10px;height:10px;border-radius:50%;background:#ff8573;border:1.5px solid #e11d48;margin-right:6px;'></span>Historical Sighting<br>" +
+      "<span style='display:inline-block;width:10px;height:10px;border-radius:50%;background:#2dd4bf;border:1.5px solid #0891b2;margin-right:6px;'></span>Satellite Tracking<br>" +
+      "<span style='display:inline-block;width:54px;height:8px;border-radius:4px;background:linear-gradient(90deg,#06b6d4,#2dd4bf,#ff8573,#fb7185);margin-right:6px;'></span>Density";
     return div;
   };
   legend.addTo(wsMap);
@@ -780,9 +819,9 @@ document.addEventListener("DOMContentLoaded", function () {
         const isSat = d.type === "satellite";
         L.circleMarker([d.lat, d.lng], {
           radius: isSat ? 4.5 : 6,
-          color: isSat ? "#0d5c56" : "#0369a1",
-          fillColor: isSat ? "#14b8a6" : "#38bdf8",
-          fillOpacity: activeView === "both" ? 0.78 : 0.88,
+          color: isSat ? "#0891b2" : "#e11d48",
+          fillColor: isSat ? "#2dd4bf" : "#ff8573",
+          fillOpacity: activeView === "both" ? 0.82 : 0.9,
           weight: isSat ? 1 : 1.5
         })
           .bindPopup(d.popup)
