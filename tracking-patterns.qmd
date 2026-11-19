@@ -1260,13 +1260,13 @@ document.addEventListener("DOMContentLoaded", function () {
 <div class="info-card" style="margin-top: 2.25rem; margin-bottom: 2rem;">
   <div style="border-bottom: 1px solid rgba(148, 163, 184, 0.2); padding-bottom: 1rem; margin-bottom: 1.5rem;">
     <div class="theme-eyebrow">
-      Synthesis &amp; Ecological Insights
+      Key Patterns
     </div>
     <h2 style="font-size: 1.75rem; font-weight: 700; color: #ffffff; margin: 0 0 0.5rem 0; border: none; padding: 0;">
       What the Data Tells Us
     </h2>
-    <p style="font-size: 0.98rem; line-height: 1.6; color: #dbeafe; margin: 0; max-width: 960px;">
-      Three key behavioral, seasonal, and geographic patterns identified from 18 satellite tracking trajectories and 136 opportunistic sighting records in the Coral Sea.
+    <p style="font-size: 0.95rem; line-height: 1.5; color: #dbeafe; margin: 0;">
+      Core movement, timing, and habitat patterns identified across Coral Sea telemetry records.
     </p>
   </div>
 
@@ -1284,21 +1284,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
       <div class="insight-body">
         <h3 class="insight-title">Long-Distance Movements</h3>
-
-        <div class="insight-data-box">
-          <strong>What the Data Shows:</strong>
-          Individual whale sharks traveled thousands of kilometers across the open Coral Sea rather than remaining tied to a single local reef:
-          <ul>
-            <li><strong>Ali:</strong> Tracked across <strong>25.3 months</strong>, traveling a recorded minimum of <strong>~11,378 km</strong> between central Queensland and Papua New Guinea (18.6°S to 7.9°S).</li>
-            <li><strong>Megashark:</strong> Covered <strong>~6,073 km</strong> over <strong>13.0 months</strong>, ranging between 16.5°S and 9.7°S.</li>
-            <li><strong>Alexios:</strong> Logged <strong>~4,307 km</strong> in <strong>5.2 months</strong> along outer reef edges.</li>
-          </ul>
-        </div>
-
-        <div class="insight-text">
-          <strong>Ecological Meaning:</strong><br>
-          Whale sharks move well beyond individual reef systems, routinely navigating deep ocean basins and crossing international maritime boundaries.
-        </div>
+        <p class="insight-text">
+          <strong>Observation:</strong> Sharks traveled thousands of kilometers across open ocean, with Ali logging ~11,378 km into Papua New Guinea.
+        </p>
+        <p class="insight-text" style="margin-bottom: 0;">
+          <strong>Key Insight:</strong> Movements routinely cross international maritime boundaries and deep ocean basins.
+        </p>
       </div>
     </div>
 
@@ -1313,21 +1304,13 @@ document.addEventListener("DOMContentLoaded", function () {
       </div>
 
       <div class="insight-body">
-        <h3 class="insight-title">Seasonal Movement Patterns</h3>
-
-        <div class="insight-data-box">
-          <strong>What the Data Shows:</strong><br>
-          Satellite transmission records cluster from <strong>November through February</strong>, followed by sharp drops during winter months (May–September).
-        </div>
-
-        <div class="insight-text">
-          <strong>Possible Ecological Explanations:</strong><br>
-          Summer conditions, nutrient upwelling, and coral and fish spawning generate dense plankton blooms, attracting whale sharks to the surface to forage.
-        </div>
-
-        <div class="insight-callout">
-          <strong>⚠️ Scientific Distinction:</strong> Satellite tags only record surface uplinks. Frequent transmissions indicate surface presence, but surface activity alone does not prove active feeding behavior.
-        </div>
+        <h3 class="insight-title">Seasonal Timing</h3>
+        <p class="insight-text">
+          <strong>Observation:</strong> Transmissions peak from November through February, dropping sharply during winter months.
+        </p>
+        <p class="insight-text" style="margin-bottom: 0;">
+          <strong>Key Insight:</strong> Summer activity aligns with seasonal plankton blooms and mass coral and fish spawning.
+        </p>
       </div>
     </div>
 
@@ -1342,17 +1325,13 @@ document.addEventListener("DOMContentLoaded", function () {
       </div>
 
       <div class="insight-body">
-        <h3 class="insight-title">Geographic Patterns &amp; Wreck Bay</h3>
-
-        <div class="insight-data-box">
-          <strong>What the Data Shows:</strong><br>
-          Records reveal a pronounced cluster centered on <strong>Wreck Bay</strong> (12.1°S–12.2°S) along the outer shelf of the far northern Great Barrier Reef, eastern Australia's primary confirmed aggregation hub.
-        </div>
-
-        <div class="insight-text" style="margin-bottom: 0;">
-          <strong>Conservation Importance:</strong><br>
-          Only about 30 whale shark aggregation sites are known globally. Identifying aggregation hubs like Wreck Bay allows authorities to establish seasonal protection zones, manage shipping traffic, and minimize accidental fishing interactions.
-        </div>
+        <h3 class="insight-title">Core Aggregation Hub</h3>
+        <p class="insight-text">
+          <strong>Observation:</strong> Telemetry clusters heavily at Wreck Bay (12.1°S–12.2°S) along the outer Great Barrier Reef shelf.
+        </p>
+        <p class="insight-text" style="margin-bottom: 0;">
+          <strong>Key Insight:</strong> Confirmed aggregation sites allow managers to focus seasonal zoning and vessel speed limits.
+        </p>
       </div>
     </div>
 

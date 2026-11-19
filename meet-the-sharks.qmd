@@ -12,8 +12,6 @@ format:
 
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  background-color: #f3f7fa;
-  color: #1e293b;
 }
 
 #title-block-header {
@@ -98,21 +96,29 @@ main.content.page-columns {
 }
 
 .info-card {
-  background: #ffffff;
-  border-radius: 14px;
-  border: 1px solid #e2e8f0;
-  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.05);
+  background: linear-gradient(165deg, rgba(255, 255, 255, 0.08) 0%, var(--ocean-panel, rgba(9, 25, 46, 0.52)) 100%);
+  border-radius: 16px;
+  border: 1px solid var(--ocean-border, rgba(125, 211, 252, 0.24));
+  box-shadow: 0 14px 34px rgba(5, 15, 30, 0.3);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   padding: 1.75rem 2rem;
   margin-bottom: 1.5rem;
+  color: var(--ocean-text, #f1f5f9);
 }
 
 .info-card h2 {
   margin-top: 0;
-  color: #0f172a;
+  color: #ffffff;
   font-weight: 700;
   font-size: 1.35rem;
-  border-bottom: 2px solid #f1f5f9;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.2);
   padding-bottom: 0.6rem;
+}
+
+.info-card p {
+  color: #dbeafe;
+  line-height: 1.6;
 }
 
 .data-table {
@@ -155,7 +161,7 @@ main.content.page-columns {
 .deck-counter {
   font-size: 0.88rem;
   font-weight: 700;
-  color: #475569;
+  color: var(--ocean-cyan, #22d3ee);
 }
 
 .deck-actions {
@@ -172,25 +178,27 @@ main.content.page-columns {
   padding: 0.38rem 0.85rem;
   cursor: pointer;
   transition: all 0.15s ease;
-  border: 1px solid #cbd5e1;
-  background: #ffffff;
-  color: #334155;
+  border: 1px solid rgba(125, 211, 252, 0.25);
+  background: rgba(13, 37, 65, 0.7);
+  color: #e2e8f0;
 }
 
 .action-btn:hover {
-  background: #f1f5f9;
-  border-color: #94a3b8;
-  color: #0f172a;
+  background: rgba(34, 211, 238, 0.22);
+  border-color: var(--ocean-cyan, #22d3ee);
+  color: #ffffff;
 }
 
 .action-btn.surprise-btn {
-  background: #f0fdfa;
-  color: #0f766e;
-  border-color: #99f6e4;
+  background: rgba(45, 212, 191, 0.16);
+  color: var(--ocean-turquoise, #2dd4bf);
+  border-color: rgba(45, 212, 191, 0.35);
 }
 
 .action-btn.surprise-btn:hover {
-  background: #ccfbf1;
+  background: rgba(45, 212, 191, 0.28);
+  border-color: var(--ocean-turquoise, #2dd4bf);
+  color: #ffffff;
 }
 
 .shark-selector-bar {
@@ -199,31 +207,34 @@ main.content.page-columns {
   gap: 0.4rem;
   margin: 0 0 1.25rem 0;
   padding-bottom: 1rem;
-  border-bottom: 1px solid #e2e8f0;
+  border-bottom: 1px solid rgba(125, 211, 252, 0.18);
 }
 
 .shark-pill {
   font-family: inherit;
   font-size: 0.84rem;
   font-weight: 600;
-  color: #334155;
-  background: #f8fafc;
-  border: 1px solid #cbd5e1;
+  color: #cbd5e1;
+  background: rgba(13, 37, 65, 0.65);
+  border: 1px solid rgba(125, 211, 252, 0.22);
   border-radius: 999px;
   padding: 0.35rem 0.8rem;
   cursor: pointer;
-  transition: all 0.15s ease-in-out;
+  transition: all 0.2s ease;
 }
 
 .shark-pill:hover {
-  background: #e2e8f0;
-  color: #0f172a;
+  background: rgba(34, 211, 238, 0.2);
+  border-color: rgba(34, 211, 238, 0.5);
+  color: #ffffff;
 }
 
 .shark-pill.active {
-  background: linear-gradient(135deg, #0d3b66 0%, #0f766e 100%);
+  background: linear-gradient(135deg, rgba(34, 211, 238, 0.35) 0%, rgba(45, 212, 191, 0.45) 100%);
   color: #ffffff;
-  border-color: #0d3b66;
+  border-color: var(--ocean-cyan, #22d3ee);
+  box-shadow: 0 0 10px rgba(34, 211, 238, 0.35);
+  font-weight: 700;
 }
 
 .shark-cards-stage {
@@ -238,12 +249,13 @@ main.content.page-columns {
 
 .shark-subsection {
   display: none;
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
-  border-top: 4px solid #0f766e;
+  background: rgba(7, 20, 38, 0.75);
+  border: 1px solid rgba(125, 211, 252, 0.24);
+  border-top: 4px solid var(--ocean-cyan, #22d3ee);
   border-radius: 14px;
   padding: 1.4rem 1.6rem;
-  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04);
+  box-shadow: 0 8px 24px rgba(5, 15, 30, 0.35);
+  backdrop-filter: blur(12px);
   animation: fadeSlideIn 0.22s ease-out;
 }
 
@@ -279,13 +291,14 @@ main.content.page-columns {
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 .shark-subsection h3 {
   margin: 0;
-  font-size: 1.2rem;
+  font-size: 1.25rem;
   font-weight: 800;
-  color: #0f172a;
+  color: #ffffff;
 }
 
 .fav-btn {
@@ -293,32 +306,32 @@ main.content.page-columns {
   font-size: 0.8rem;
   font-weight: 600;
   border-radius: 999px;
-  padding: 0.3rem 0.7rem;
-  border: 1px solid #e2e8f0;
-  background: #ffffff;
-  color: #64748b;
+  padding: 0.3rem 0.75rem;
+  border: 1px solid rgba(125, 211, 252, 0.25);
+  background: rgba(13, 37, 65, 0.6);
+  color: #cbd5e1;
   cursor: pointer;
   transition: all 0.15s ease;
   white-space: nowrap;
 }
 
 .fav-btn:hover {
-  border-color: #fda4af;
-  color: #e11d48;
-  background: #fff1f2;
+  border-color: rgba(255, 133, 115, 0.5);
+  color: var(--ocean-coral, #ff8573);
+  background: rgba(255, 133, 115, 0.15);
 }
 
 .fav-btn.favorited {
-  background: #fff1f2;
-  border-color: #fecdd3;
-  color: #e11d48;
+  background: rgba(255, 133, 115, 0.22);
+  border-color: rgba(255, 133, 115, 0.6);
+  color: var(--ocean-coral, #ff8573);
 }
 
 .shark-meta {
   display: flex;
   flex-wrap: wrap;
   gap: 0.45rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0.9rem;
 }
 
 /* Hide middle 3 chips since they are displayed cleanly in the visual stat bars */
@@ -329,9 +342,9 @@ main.content.page-columns {
 .meta-chip {
   font-size: 0.78rem;
   font-weight: 600;
-  background: #f1f5f9;
-  border: 1px solid #dbe4ee;
-  color: #334155;
+  background: rgba(13, 37, 65, 0.7);
+  border: 1px solid rgba(125, 211, 252, 0.22);
+  color: #cbd5e1;
   padding: 0.24rem 0.68rem;
   border-radius: 999px;
 }
@@ -340,11 +353,11 @@ main.content.page-columns {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 0.85rem;
-  background: #f8fafc;
-  border: 1px solid #e2e8f0;
+  background: rgba(3, 12, 26, 0.45);
+  border: 1px solid rgba(125, 211, 252, 0.16);
   border-radius: 12px;
   padding: 0.85rem 1rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0.95rem;
 }
 
 .meter-box {
@@ -358,18 +371,19 @@ main.content.page-columns {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.04em;
-  color: #64748b;
+  color: #94a3b8;
 }
 
 .meter-val {
-  font-size: 0.84rem;
+  font-size: 0.86rem;
   font-weight: 700;
-  color: #0f172a;
+  color: #ffffff;
 }
 
 .meter-track {
   height: 7px;
-  background: #e2e8f0;
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid rgba(125, 211, 252, 0.15);
   border-radius: 999px;
   overflow: hidden;
   margin-top: 0.1rem;
@@ -379,8 +393,83 @@ main.content.page-columns {
   height: 100%;
   width: 0%;
   border-radius: 999px;
-  background: linear-gradient(90deg, #0284c7 0%, #0f766e 100%);
+  background: linear-gradient(90deg, #0284c7 0%, var(--ocean-cyan, #22d3ee) 60%, var(--ocean-turquoise, #2dd4bf) 100%);
   transition: width 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.shark-summary-box {
+  background: rgba(7, 20, 38, 0.65);
+  border: 1px solid rgba(125, 211, 252, 0.18);
+  border-left: 3px solid var(--ocean-cyan, #22d3ee);
+  border-radius: 8px;
+  padding: 0.7rem 0.95rem;
+  margin-bottom: 0.85rem;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: #e2e8f0;
+}
+
+.summary-badge {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  background: rgba(34, 211, 238, 0.2);
+  color: var(--ocean-cyan, #22d3ee);
+  border: 1px solid rgba(34, 211, 238, 0.4);
+  margin-right: 0.4rem;
+  vertical-align: middle;
+}
+
+details.ocean-expandable {
+  margin-top: 0.5rem;
+  background: rgba(7, 20, 38, 0.65);
+  border: 1px solid rgba(125, 211, 252, 0.22);
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+  transition: all 0.25s ease;
+}
+
+details.ocean-expandable[open] {
+  background: rgba(7, 20, 38, 0.85);
+  border-color: rgba(34, 211, 238, 0.4);
+}
+
+details.ocean-expandable summary {
+  font-weight: 700;
+  font-size: 0.88rem;
+  color: var(--ocean-cyan, #22d3ee);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  list-style: none;
+  user-select: none;
+}
+
+details.ocean-expandable summary::-webkit-details-marker {
+  display: none;
+}
+
+details.ocean-expandable summary::before {
+  content: "▸";
+  display: inline-block;
+  font-size: 0.85rem;
+  transition: transform 0.2s ease;
+  color: var(--ocean-cyan, #22d3ee);
+}
+
+details.ocean-expandable[open] summary::before {
+  transform: rotate(90deg);
+}
+
+.expandable-content {
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(148, 163, 184, 0.2);
 }
 
 .shark-subsection ul {
@@ -397,18 +486,23 @@ main.content.page-columns {
 }
 
 .shark-subsection li {
-  background: #f8fafc;
-  border: 1px solid #e2e8f0;
-  border-left: 3px solid #0284c7;
+  background: rgba(13, 37, 65, 0.6);
+  border: 1px solid rgba(125, 211, 252, 0.18);
+  border-left: 3px solid var(--ocean-cyan, #22d3ee);
   border-radius: 10px;
   padding: 0.8rem 0.95rem;
   margin: 0;
   line-height: 1.55;
-  font-size: 0.93rem;
+  font-size: 0.91rem;
+  color: #dbeafe;
 }
 
 .shark-subsection li:last-child {
-  border-left-color: #0f766e;
+  border-left-color: var(--ocean-turquoise, #2dd4bf);
+}
+
+.shark-subsection li strong {
+  color: #ffffff;
 }
 
 .seasonal-grid {
@@ -718,6 +812,27 @@ function toggleFavorite(sharkId, btnEl) {
   syncPillHearts();
 }
 
+const SHARK_COMPARE_DATA = [
+  { id: 'megashark', name: 'Megashark', tag: '252324', sex: 'Male', maturity: 'Immature', pings: 423, months: 13.0, days: 398, km: 6073, lats: '16.5°S to 9.7°S', pattern: 'Highest cumulative transmissions; steep summer rise, 49-day winter offshore gap, late-year surge.' },
+  { id: 'alexios', name: 'Alexios', tag: '178953', sex: 'Male', maturity: 'Immature', pings: 357, months: 5.2, days: 159, km: 4307, lats: '18.1°S to 11.1°S', pattern: 'Steady, uninterrupted surface tracking (max gap ≤13 days) along outer Great Barrier Reef corridor.' },
+  { id: 'ali', name: 'Ali', tag: '178954', sex: 'Female', maturity: 'Immature', pings: 273, months: 25.3, days: 771, km: 11378, lats: '18.6°S to 7.9°S', pattern: 'Longest tracked duration (>2 years) and farthest recorded distance, moving in seasonal steps into PNG waters.' },
+  { id: 'sharpie', name: 'Sharpie', tag: '252325', sex: 'Male', maturity: 'Immature', pings: 261, months: 3.2, days: 98, km: 1544, lats: '13.5°S to 11.3°S', pattern: 'Very steep 3-month summer surface burst (~2.7 uplinks/day) confined to northern reef band.' },
+  { id: 'juanita', name: 'Juanita', tag: '172900', sex: 'Unknown', maturity: 'Immature', pings: 204, months: 4.3, days: 133, km: 2642, lats: '16.6°S to 8.1°S', pattern: 'Early spring tagging; wide 8.5° latitudinal transit across the northern Coral Sea basin.' },
+  { id: 'gbr1', name: 'GBR1', tag: '172899', sex: 'Unknown', maturity: 'Immature', pings: 177, months: 4.8, days: 147, km: 3677, lats: '14.2°S to 6.3°S', pattern: 'Northernmost recorded position (6.3°S near PNG); unbroken uplink line (max gap ≤4 days).' },
+  { id: 'beizam', name: 'Beizam', tag: '243952', sex: 'Male', maturity: 'Subadult', pings: 98, months: 2.2, days: 69, km: 1846, lats: '17.2°S to 11.3°S', pattern: 'Only confirmed subadult; rapid offshore transit (~27 km/day) spanning nearly 6 degrees of latitude.' },
+  { id: 'blancpain', name: 'Blancpain', tag: '178957', sex: 'Female', maturity: 'Immature', pings: 73, months: 17.3, days: 527, km: 1943, lats: '14.5°S to 8.1°S', pattern: 'Longest silent gap (276 consecutive days / ~9 months) before re-emerging to ping near PNG.' },
+  { id: 'gbr2', name: 'GBR2', tag: '176413', sex: 'Male', maturity: 'Immature', pings: 69, months: 2.9, days: 89, km: 2675, lats: '15.1°S to 10.8°S', pattern: 'High daily travel speeds (~30 km/day between uplinks) moving briskly across outer Coral Sea reefs.' },
+  { id: 'infamis', name: 'Infamis', tag: '243954', sex: 'Male', maturity: 'Immature', pings: 66, months: 2.4, days: 74, km: 644, lats: '13.8°S to 12.2°S', pattern: 'Strong localized fidelity within a narrow 1.6° latitude band along northern shelf edge.' },
+  { id: 'jaap', name: 'Jaap', tag: '178948', sex: 'Male', maturity: 'Immature', pings: 63, months: 1.3, days: 40, km: 255, lats: '12.2°S to 11.6°S', pattern: 'Focused tightly around Wreck Bay hotspot during late November–December coral spawning window.' },
+  { id: 'halliday', name: 'Halliday', tag: '243955', sex: 'Male', maturity: 'Immature', pings: 53, months: 1.3, days: 40, km: 772, lats: '15.0°S to 11.3°S', pattern: 'Over 39 days traveled 3x farther than Jaap (~772 km), moving southward along outer reef margins.' },
+  { id: 'hugh', name: 'Hugh', tag: '243951', sex: 'Male', maturity: 'Immature', pings: 53, months: 0.2, days: 8, km: 143, lats: '12.2°S to 12.0°S', pattern: 'Intense short-term surface burst (~7.6 uplinks/day) right after tagging at Wreck Bay.' },
+  { id: 'fifty_fathoms', name: 'Fifty_Fathoms', tag: '178951', sex: 'Male', maturity: 'Immature', pings: 24, months: 1.2, days: 38, km: 868, lats: '14.6°S to 11.5°S', pattern: 'Traveled nearly 870 km across 3° of latitude with only 24 uplinks, indicating deeper cruising.' },
+  { id: 'sapphire', name: 'Sapphire', tag: '176409', sex: 'Male', maturity: 'Immature', pings: 24, months: 0.3, days: 10, km: 1387, lats: '16.5°S to 12.7°S', pattern: 'Tracked in late summer (March), traveling nearly 1,400 km in 9 days across the Coral Sea.' },
+  { id: 'andrew', name: 'Andrew', tag: '243953', sex: 'Male', maturity: 'Immature', pings: 18, months: 0.2, days: 6, km: 76, lats: '12.2°S to 11.9°S', pattern: 'Short 5-day local cluster at northern reef tagging ground before early tag drop or diving.' },
+  { id: 'dotti', name: 'Dotti', tag: '178949', sex: 'Male', maturity: 'Immature', pings: 10, months: 0.1, days: 4, km: 20, lats: '12.2°S', pattern: 'Brief 3-day local aggregation snapshot at 12.2°S during November 2019 expedition.' },
+  { id: 'ambitious', name: 'Ambitious', tag: '176407', sex: 'Unknown', maturity: 'Immature', pings: 9, months: 0.2, days: 7, km: 19, lats: '12.2°S to 12.1°S', pattern: 'Shortest tagged record (9 pings over 6 days), illustrating marine telemetry retention limits.' }
+];
+
 document.addEventListener('DOMContentLoaded', function() {
   document.querySelectorAll('.shark-pill').forEach(function(btn) {
     const m = (btn.getAttribute('onclick') || '').match(/selectShark\('([^']+)'/);
@@ -799,7 +914,27 @@ document.addEventListener('DOMContentLoaded', function() {
     `;
 
     const ul = sec.querySelector('ul');
-    if (ul) sec.insertBefore(meters, ul);
+    if (ul) {
+      sec.insertBefore(meters, ul);
+
+      const d = SHARK_COMPARE_DATA.find(function(item) { return item.id === sid; });
+      if (d && d.pattern) {
+        const summaryBox = document.createElement('div');
+        summaryBox.className = 'shark-summary-box';
+        summaryBox.innerHTML = `<span class="summary-badge">Summary</span> ${d.pattern}`;
+        sec.insertBefore(summaryBox, ul);
+      }
+
+      const details = document.createElement('details');
+      details.className = 'ocean-expandable';
+      details.innerHTML = '<summary>Additional Details</summary>';
+      const contentDiv = document.createElement('div');
+      contentDiv.className = 'expandable-content';
+
+      ul.parentNode.insertBefore(details, ul);
+      contentDiv.appendChild(ul);
+      details.appendChild(contentDiv);
+    }
   });
 
   syncPillHearts();
@@ -807,27 +942,6 @@ document.addEventListener('DOMContentLoaded', function() {
   animateVisibleMeters();
   renderCompareChart();
 });
-
-const SHARK_COMPARE_DATA = [
-  { id: 'megashark', name: 'Megashark', tag: '252324', sex: 'Male', maturity: 'Immature', pings: 423, months: 13.0, days: 398, km: 6073, lats: '16.5°S to 9.7°S', pattern: 'Highest cumulative transmissions; steep summer rise, 49-day winter offshore gap, late-year surge.' },
-  { id: 'alexios', name: 'Alexios', tag: '178953', sex: 'Male', maturity: 'Immature', pings: 357, months: 5.2, days: 159, km: 4307, lats: '18.1°S to 11.1°S', pattern: 'Steady, uninterrupted surface tracking (max gap ≤13 days) along outer Great Barrier Reef corridor.' },
-  { id: 'ali', name: 'Ali', tag: '178954', sex: 'Female', maturity: 'Immature', pings: 273, months: 25.3, days: 771, km: 11378, lats: '18.6°S to 7.9°S', pattern: 'Longest tracked duration (>2 years) and farthest recorded distance, moving in seasonal steps into PNG waters.' },
-  { id: 'sharpie', name: 'Sharpie', tag: '252325', sex: 'Male', maturity: 'Immature', pings: 261, months: 3.2, days: 98, km: 1544, lats: '13.5°S to 11.3°S', pattern: 'Very steep 3-month summer surface burst (~2.7 uplinks/day) confined to northern reef band.' },
-  { id: 'juanita', name: 'Juanita', tag: '172900', sex: 'Unknown', maturity: 'Immature', pings: 204, months: 4.3, days: 133, km: 2642, lats: '16.6°S to 8.1°S', pattern: 'Early spring tagging; wide 8.5° latitudinal transit across the northern Coral Sea basin.' },
-  { id: 'gbr1', name: 'GBR1', tag: '172899', sex: 'Unknown', maturity: 'Immature', pings: 177, months: 4.8, days: 147, km: 3677, lats: '14.2°S to 6.3°S', pattern: 'Northernmost recorded position (6.3°S near PNG); unbroken uplink line (max gap ≤4 days).' },
-  { id: 'beizam', name: 'Beizam', tag: '243952', sex: 'Male', maturity: 'Subadult', pings: 98, months: 2.2, days: 69, km: 1846, lats: '17.2°S to 11.3°S', pattern: 'Only confirmed subadult; rapid offshore transit (~27 km/day) spanning nearly 6 degrees of latitude.' },
-  { id: 'blancpain', name: 'Blancpain', tag: '178957', sex: 'Female', maturity: 'Immature', pings: 73, months: 17.3, days: 527, km: 1943, lats: '14.5°S to 8.1°S', pattern: 'Longest silent gap (276 consecutive days / ~9 months) before re-emerging to ping near PNG.' },
-  { id: 'gbr2', name: 'GBR2', tag: '176413', sex: 'Male', maturity: 'Immature', pings: 69, months: 2.9, days: 89, km: 2675, lats: '15.1°S to 10.8°S', pattern: 'High daily travel speeds (~30 km/day between uplinks) moving briskly across outer Coral Sea reefs.' },
-  { id: 'infamis', name: 'Infamis', tag: '243954', sex: 'Male', maturity: 'Immature', pings: 66, months: 2.4, days: 74, km: 644, lats: '13.8°S to 12.2°S', pattern: 'Strong localized fidelity within a narrow 1.6° latitude band along northern shelf edge.' },
-  { id: 'jaap', name: 'Jaap', tag: '178948', sex: 'Male', maturity: 'Immature', pings: 63, months: 1.3, days: 40, km: 255, lats: '12.2°S to 11.6°S', pattern: 'Focused tightly around Wreck Bay hotspot during late November–December coral spawning window.' },
-  { id: 'halliday', name: 'Halliday', tag: '243955', sex: 'Male', maturity: 'Immature', pings: 53, months: 1.3, days: 40, km: 772, lats: '15.0°S to 11.3°S', pattern: 'Over 39 days traveled 3x farther than Jaap (~772 km), moving southward along outer reef margins.' },
-  { id: 'hugh', name: 'Hugh', tag: '243951', sex: 'Male', maturity: 'Immature', pings: 53, months: 0.2, days: 8, km: 143, lats: '12.2°S to 12.0°S', pattern: 'Intense short-term surface burst (~7.6 uplinks/day) right after tagging at Wreck Bay.' },
-  { id: 'fifty_fathoms', name: 'Fifty_Fathoms', tag: '178951', sex: 'Male', maturity: 'Immature', pings: 24, months: 1.2, days: 38, km: 868, lats: '14.6°S to 11.5°S', pattern: 'Traveled nearly 870 km across 3° of latitude with only 24 uplinks, indicating deeper cruising.' },
-  { id: 'sapphire', name: 'Sapphire', tag: '176409', sex: 'Male', maturity: 'Immature', pings: 24, months: 0.3, days: 10, km: 1387, lats: '16.5°S to 12.7°S', pattern: 'Tracked in late summer (March), traveling nearly 1,400 km in 9 days across the Coral Sea.' },
-  { id: 'andrew', name: 'Andrew', tag: '243953', sex: 'Male', maturity: 'Immature', pings: 18, months: 0.2, days: 6, km: 76, lats: '12.2°S to 11.9°S', pattern: 'Short 5-day local cluster at northern reef tagging ground before early tag drop or diving.' },
-  { id: 'dotti', name: 'Dotti', tag: '178949', sex: 'Male', maturity: 'Immature', pings: 10, months: 0.1, days: 4, km: 20, lats: '12.2°S', pattern: 'Brief 3-day local aggregation snapshot at 12.2°S during November 2019 expedition.' },
-  { id: 'ambitious', name: 'Ambitious', tag: '176407', sex: 'Unknown', maturity: 'Immature', pings: 9, months: 0.2, days: 7, km: 19, lats: '12.2°S to 12.1°S', pattern: 'Shortest tagged record (9 pings over 6 days), illustrating marine telemetry retention limits.' }
-];
 
 let compareMetric = 'pings';
 let compareSex = 'all';

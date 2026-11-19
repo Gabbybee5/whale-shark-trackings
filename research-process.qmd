@@ -560,7 +560,7 @@ main.content.page-columns {
     <div class="limitations-eyebrow">Scientific Rigor &amp; Context</div>
     <h2 class="limitations-title">Limitations of the Research</h2>
     <p class="limitations-intro">
-      Interpreting tracking results requires understanding both what the data demonstrates and where uncertainties remain.
+      Understanding what telemetry data reveals and where uncertainties remain is essential for sound conservation science.
     </p>
   </div>
 
@@ -569,9 +569,9 @@ main.content.page-columns {
     <div class="limitation-item">
       <div class="limitation-icon">🦈</div>
       <div class="limitation-body">
-        <h3 class="limitation-name">Limited Sample Size</h3>
+        <h3 class="limitation-name">Sample Size</h3>
         <p class="limitation-text">
-          Only 18 whale sharks were satellite tagged. A sample of 18 sharks may not represent the movement habits, age classes, or sex ratios of every whale shark throughout the wider Coral Sea.
+          Eighteen tagged individuals may not reflect the movement patterns, age classes, or sex ratios of the entire Coral Sea population.
         </p>
       </div>
     </div>
@@ -582,7 +582,7 @@ main.content.page-columns {
       <div class="limitation-body">
         <h3 class="limitation-name">Tracking Gaps</h3>
         <p class="limitation-text">
-          Transmissions only occur when the tag breaches the surface. Gaps between locations do not mean a shark was absent; the shark may simply have been traveling or foraging at depth.
+          Tags transmit only at the surface; transmission gaps reflect deep diving or foraging, not shark absence.
         </p>
       </div>
     </div>
@@ -591,9 +591,9 @@ main.content.page-columns {
     <div class="limitation-item">
       <div class="limitation-icon">📍</div>
       <div class="limitation-body">
-        <h3 class="limitation-name">Historical Sightings</h3>
+        <h3 class="limitation-name">Sighting Bias</h3>
         <p class="limitation-text">
-          Historical sightings depend on where people reported whale sharks (such as dive destinations or tourism routes). Some locations have more sightings simply because they were visited more frequently.
+          Historical sightings cluster where people regularly visit (dive and tourism hubs), reflecting human observation effort.
         </p>
       </div>
     </div>
@@ -602,9 +602,9 @@ main.content.page-columns {
     <div class="limitation-item">
       <div class="limitation-icon">🏊</div>
       <div class="limitation-body">
-        <h3 class="limitation-name">Limited Behavioral Information</h3>
+        <h3 class="limitation-name">Behavioral Context</h3>
         <p class="limitation-text">
-          Satellite telemetry records coordinates and surface uplinks, but does not directly reveal whether a shark was feeding, resting, mating, or diving. Surface presence alone should not be mistaken for confirmed feeding activity.
+          Satellite coordinates record location and surface basking, but do not directly confirm feeding, resting, or mating.
         </p>
       </div>
     </div>
@@ -613,9 +613,9 @@ main.content.page-columns {
     <div class="limitation-item">
       <div class="limitation-icon">🌏</div>
       <div class="limitation-body">
-        <h3 class="limitation-name">Geographic Limitations</h3>
+        <h3 class="limitation-name">Geographic Scope</h3>
         <p class="limitation-text">
-          This dataset focuses on the Coral Sea, Great Barrier Reef shelf, and western Pacific waters. Findings reflect regional oceanography and should not automatically be applied to all whale shark populations worldwide.
+          Findings reflect Coral Sea and southwest Pacific oceanography, rather than all global whale shark populations.
         </p>
       </div>
     </div>
@@ -624,18 +624,18 @@ main.content.page-columns {
     <div class="limitation-item">
       <div class="limitation-icon">🏷️</div>
       <div class="limitation-body">
-        <h3 class="limitation-name">Tag Limitations</h3>
+        <h3 class="limitation-name">Tag Retention</h3>
         <p class="limitation-text">
-          Tag attachment retention, battery longevity, biofouling, and satellite passes create differences in how long and how reliably each tag transmits.
+          Attachment retention, battery lifespan, and satellite pass timing create differences in tracking duration across sharks.
         </p>
       </div>
     </div>
   </div>
 
   <div class="limitations-conclusion">
-    <h4><span>💡</span> Why Acknowledging Limitations Matters in Science</h4>
+    <h4><span>💡</span> Why Limitations Matter</h4>
     <p>
-      Recognizing what data can and cannot prove protects researchers from drawing premature conclusions, guides future telemetry studies, and ensures marine protection measures are founded on solid, transparent evidence.
+      Recognizing data limits prevents overgeneralization and ensures marine protection measures are founded on solid evidence.
     </p>
   </div>
 </div>
