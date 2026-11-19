@@ -8,14 +8,6 @@ format:
 
 ```{=html}
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
-
-body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  background-color: #f3f7fa;
-  color: #1e293b;
-}
-
 #title-block-header {
   display: none !important;
 }
@@ -35,9 +27,10 @@ main.content.page-columns {
   padding: 2.75rem 2.5rem;
   border-radius: 16px;
   margin: 1.5rem 0 1.75rem 0;
-  box-shadow: 0 12px 30px rgba(7, 25, 47, 0.22);
+  box-shadow: 0 14px 34px rgba(5, 15, 30, 0.3);
   position: relative;
   overflow: hidden;
+  border: 1px solid var(--ocean-border, rgba(125, 211, 252, 0.24));
 }
 
 .hero-bg-img {
@@ -64,7 +57,7 @@ main.content.page-columns {
 .hero-content {
   position: relative;
   z-index: 2;
-  max-width: 700px;
+  max-width: 760px;
 }
 
 .hero-eyebrow {
@@ -97,32 +90,44 @@ main.content.page-columns {
 }
 
 .info-card {
-  background: #ffffff;
-  border-radius: 14px;
-  border: 1px solid #e2e8f0;
-  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.05);
+  background: linear-gradient(165deg, rgba(255, 255, 255, 0.08) 0%, var(--ocean-panel, rgba(9, 25, 46, 0.52)) 100%);
+  border-radius: 16px;
+  border: 1px solid var(--ocean-border, rgba(125, 211, 252, 0.24));
+  box-shadow: 0 14px 34px rgba(5, 15, 30, 0.3);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   padding: 1.75rem 2rem;
   margin-bottom: 1.5rem;
+  color: var(--ocean-text, #f1f5f9);
 }
 
 .info-card h2 {
   margin-top: 0;
-  color: #0f172a;
+  color: #ffffff;
   font-weight: 700;
   font-size: 1.35rem;
-  border-bottom: 2px solid #f1f5f9;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.2);
   padding-bottom: 0.6rem;
+}
+
+.info-card p,
+.info-card ul {
+  color: #dbeafe;
+  line-height: 1.6;
 }
 
 .split-card {
   display: grid;
   grid-template-columns: 1.35fr 0.85fr;
-  background: #ffffff;
+  background: linear-gradient(165deg, rgba(255, 255, 255, 0.08) 0%, var(--ocean-panel, rgba(9, 25, 46, 0.52)) 100%);
   border-radius: 16px;
-  border: 1px solid #e2e8f0;
-  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.06);
+  border: 1px solid var(--ocean-border, rgba(125, 211, 252, 0.24));
+  box-shadow: 0 14px 34px rgba(5, 15, 30, 0.3);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   overflow: hidden;
   margin-bottom: 1.5rem;
+  color: var(--ocean-text, #f1f5f9);
 }
 
 .split-card-body {
@@ -131,11 +136,16 @@ main.content.page-columns {
 
 .split-card-body h2 {
   margin-top: 0;
-  color: #0f172a;
+  color: #ffffff;
   font-weight: 700;
   font-size: 1.35rem;
-  border-bottom: 2px solid #f1f5f9;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.2);
   padding-bottom: 0.6rem;
+}
+
+.split-card-body p,
+.split-card-body ul {
+  color: #dbeafe;
 }
 
 .split-card-media {
@@ -157,7 +167,7 @@ main.content.page-columns {
   left: 0.85rem;
   right: 0.85rem;
   bottom: 0.85rem;
-  background: rgba(7, 25, 47, 0.76);
+  background: rgba(7, 25, 47, 0.85);
   backdrop-filter: blur(6px);
   color: #e2e8f0;
   font-size: 0.78rem;
@@ -167,12 +177,138 @@ main.content.page-columns {
   border: 1px solid rgba(125, 211, 252, 0.22);
 }
 
+.method-distinction {
+  background: rgba(7, 20, 38, 0.65);
+  border: 1px solid var(--ocean-border, rgba(125, 211, 252, 0.24));
+  border-left: 4px solid var(--ocean-cyan, #22d3ee);
+  border-radius: 14px;
+  padding: 1.35rem 1.6rem;
+  margin-bottom: 1.75rem;
+  backdrop-filter: blur(12px);
+  color: #dbeafe;
+}
+
+.method-distinction h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.distinction-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.15rem;
+  margin-top: 0.85rem;
+}
+
+.distinction-col {
+  background: rgba(9, 25, 46, 0.7);
+  border: 1px solid rgba(125, 211, 252, 0.2);
+  border-radius: 10px;
+  padding: 1.1rem 1.25rem;
+}
+
+.distinction-col-header {
+  font-weight: 700;
+  font-size: 0.92rem;
+  margin-bottom: 0.45rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.distinction-col-header.telemetry {
+  color: var(--ocean-cyan, #22d3ee);
+}
+
+.distinction-col-header.science {
+  color: var(--ocean-turquoise, #2dd4bf);
+}
+
+.distinction-col ul {
+  margin: 0;
+  padding-left: 1.2rem;
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: #cbd5e1;
+}
+
+.threat-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.15rem;
+  margin-top: 1rem;
+}
+
+.threat-card {
+  background: rgba(7, 20, 38, 0.65);
+  border: 1px solid rgba(125, 211, 252, 0.2);
+  border-radius: 12px;
+  padding: 1.25rem 1.4rem;
+  border-top: 4px solid var(--ocean-coral, #ff8573);
+  backdrop-filter: blur(10px);
+}
+
+.threat-card h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.threat-card p {
+  margin: 0;
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: #dbeafe;
+}
+
+.callout-pill {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  margin-bottom: 0.4rem;
+}
+
+.pill-habitat {
+  background: rgba(45, 212, 191, 0.16);
+  color: var(--ocean-turquoise, #2dd4bf);
+  border: 1px solid rgba(45, 212, 191, 0.4);
+}
+
+.pill-transboundary {
+  background: rgba(34, 211, 238, 0.16);
+  color: var(--ocean-cyan, #22d3ee);
+  border: 1px solid rgba(34, 211, 238, 0.4);
+}
+
+.pill-caution {
+  background: rgba(255, 133, 115, 0.16);
+  color: var(--ocean-coral, #ff8573);
+  border: 1px solid rgba(255, 133, 115, 0.4);
+}
+
 @media (max-width: 820px) {
   .split-card {
     grid-template-columns: 1fr;
   }
   .split-card-media {
     min-height: 240px;
+  }
+  .distinction-grid,
+  .threat-grid {
+    grid-template-columns: 1fr;
   }
 }
 </style>
@@ -183,45 +319,133 @@ main.content.page-columns {
     <div class="hero-eyebrow">Ecological & Conservation Context</div>
     <h1 class="hero-title">Whale Shark Ecology & Conservation in the Coral Sea</h1>
     <p class="hero-subtitle">
-      Understanding how the world's largest fish uses tropical reef corridors, why satellite tags show surface bursts and deep-water gaps, and why international protection matters.
+      Satellite telemetry and marine ecological research: feeding aggregations, transboundary migrations, and conservation priorities.
     </p>
+  </div>
+</div>
+
+<div class="method-distinction">
+  <h3>🔬 Scientific Distinction: Tracking Telemetry vs. Ecological Inferences</h3>
+  <p style="margin: 0 0 0.6rem 0; font-size: 0.92rem; color: #dbeafe; line-height: 1.55;">
+    Distinguishing between empirical telemetry recorded by tags and broader biological processes documented in marine research:
+  </p>
+  <div class="distinction-grid">
+    <div class="distinction-col">
+      <div class="distinction-col-header telemetry">📡 What This Tracking Dataset Directly Measures</div>
+      <ul>
+        <li><strong>Geographic Coordinates:</strong> Surface Argos satellite locations whenever a tagged shark's dorsal fin breaks the water surface.</li>
+        <li><strong>Transmission Timing:</strong> Uplink timestamps, daily transmission rates, and tracking spans.</li>
+        <li><strong>Spatial Trajectories:</strong> Straight-line displacement, latitudinal bounds, and silent tracking intervals between uplinks.</li>
+      </ul>
+    </div>
+    <div class="distinction-col">
+      <div class="distinction-col-header science">📚 What Broader Scientific Literature Contributes</div>
+      <ul>
+        <li><strong>Thermoregulation &amp; Diving:</strong> Studies documenting deep cold dives and returns to warm surface layers.</li>
+        <li><strong>Feeding Behavior:</strong> Studies linking seasonal visits to synchronized coral/fish spawning and plankton blooms.</li>
+        <li><strong>Shipping Lane Overlap:</strong> Vessel AIS data mapped against migration paths to quantify collision risk.</li>
+      </ul>
+    </div>
   </div>
 </div>
 
 <div class="split-card">
   <div class="split-card-body">
-    <h2>1. Filter-Feeding Giants in a Tropical Ocean</h2>
-    <p>As the world's largest living fish (<em>Rhincodon typus</em>), whale sharks are ectothermic (cold-blooded) filter feeders that navigate warm tropical and subtropical seas in search of dense prey patches:</p>
-    <ul>
-      <li><strong>Spawning Aggregation Hotspots:</strong> During late spring and austral summer (November–February), whale sharks gather along outer reefs of the northern Great Barrier Reef and Coral Sea to feed on zooplankton blooms and mass fish and coral spawning events.</li>
-      <li><strong>Surface Thermoregulation:</strong> After diving into deep, cooler ocean layers to forage, whale sharks return to sun-warmed surface waters to warm their bodies — creating the exact windows when fin-mounted satellite tags break the surface and uplink GPS locations.</li>
+    <h2>1. Ecological Drivers of Surface Behavior &amp; Movement</h2>
+    <p style="font-size: 0.94rem; line-height: 1.6; color: #dbeafe;">
+      As ectothermic filter feeders, whale sharks surface for physiological and environmental reasons documented in marine ecological research:
+    </p>
+    <ul style="font-size: 0.92rem; line-height: 1.65; color: #dbeafe; padding-left: 1.25rem;">
+      <li>
+        <strong>Surface Thermoregulation:</strong> Whale sharks dive to deep cold water (>1,000 m) to search for prey, returning to warm surface waters to bask ("behavioral thermoregulation"), exposing transmitters to enable satellite uplinks.
+      </li>
+      <li>
+        <strong>Feeding Behavior:</strong> Whale sharks filter-feed on zooplankton near the surface. (Surface presence reflects feeding, thermoregulation, transit, or rest.)
+      </li>
+      <li>
+        <strong>Seasonal Plankton Availability:</strong> Tracking detections cluster during austral summer (November to February), coinciding with coral and fish spawning that produce dense plankton blooms.
+      </li>
+      <li>
+        <strong>Shipping Lane Overlap:</strong> Surface swimming places sharks directly in commercial shipping corridors along Queensland and the Coral Sea, creating collision hazards.
+      </li>
     </ul>
   </div>
   <div class="split-card-media">
     <img src="images/kevin-charit-bZc2GI4LR2Q-unsplash.jpg" alt="Two whale sharks filter-feeding at the sunlit ocean surface">
-    <div class="split-card-caption">Surface feeding and basking windows allow fin-mounted tags to uplink GPS positions.</div>
+    <div class="split-card-caption">Surface feeding and thermoregulation bring dorsal tags above water, allowing Argos satellite transmission.</div>
   </div>
 </div>
 ```
 
 <div class="info-card">
 
-## 2. Cross-Border Ocean Roaming
+<span class="callout-pill pill-habitat">Ecological Hubs</span>
 
-The trajectories on the **Tracking Patterns** map show that Coral Sea whale sharks do not stay inside a single reef or national boundary:
+## 2. Important Habitats: The Wreck Bay Aggregation Site
 
-- **From Reef Shelves to Deep Basins:** Tagged individuals travel across deep oceanic trenches between Queensland's continental shelf, remote Coral Sea seamounts, and Papua New Guinea waters.
-- **Subadult Male Dominance:** Like many coastal whale shark aggregations worldwide, a large share of the tagged Coral Sea individuals are immature and subadult sharks using productive shelf edges to fuel rapid growth before dispersing into the wider Indo-Pacific.
+Tagging efforts centered on **Wreck Bay** (12.1°S–12.2°S) along the far northern Great Barrier Reef outer shelf.
+
+- **First Southwest Pacific Aggregation:** Only approximately 30 aggregation sites are documented worldwide. Research identified Wreck Bay as **the first confirmed whale shark aggregation site in eastern Australia and across the southwest Pacific Ocean**.
+- **Juvenile & Subadult Habitat:** Observations indicate an aggregation dominated by immature and subadult males exploiting seasonal prey pulses for rapid growth.
+- **Conservation Management:** Identifying predictable hubs enables authorities to establish focused seasonal protection zones, enact vessel speed restrictions, and manage eco-tourism.
 
 </div>
 
 <div class="info-card">
 
-## 3. Why Satellite Telemetry Matters for Conservation
+<span class="callout-pill pill-transboundary">Transboundary Ecology</span>
 
-Whale sharks are listed as **Endangered** globally on the IUCN Red List due to vessel strikes, fisheries bycatch, and changing ocean temperatures:
+## 3. International Conservation: Transboundary Cooperation
 
-- **Pinpointing High-Risk Shipping Lanes:** High-density tracking paths reveal where seasonal surface-feeding hotspots overlap with commercial shipping corridors along northeastern Australia and Papua New Guinea.
-- **Protecting Connected Marine Parks:** Because individual sharks like *Megashark* and *Ali* roam across hundreds of kilometers over multiple years, effective conservation depends on linking Australia's Great Barrier Reef and Coral Sea Marine Parks with neighboring Pacific protections.
+Satellite telemetry demonstrates that whale sharks operate on oceanic scales that cross geopolitical borders:
+
+- **Large-Scale Movements:**
+  - *Ali* (Tag 178954): Tracked for **25.3 months across ~11,378 km** from the Great Barrier Reef into Papua New Guinea waters.
+  - *GBR1* (Tag 172899): Traveled northward to **6.3°S latitude** into the Solomon Sea off Papua New Guinea over 4.8 months.
+- **Transboundary Protection:**
+  - *Jurisdictional Disconnect:* Sharks protected inside Australian marine parks lose legal protection when swimming into Papua New Guinea or high-seas waters.
+  - *Bilateral Coordination:* Continuous ecological connectivity requires shared telemetry data, coordinated marine protected areas, and standardized bycatch reporting under **CMS Appendix I/II** and **CITES Appendix II**.
+
+</div>
+
+<div class="info-card">
+
+<span class="callout-pill pill-caution">Anthropogenic Pressures</span>
+
+## 4. Conservation Challenges: Threats to an Endangered Species
+
+Whale sharks are classified globally as **Endangered** on the IUCN Red List of Threatened Species. Telemetry and conservation science identify key threats:
+
+<div class="threat-grid">
+
+<div class="threat-card">
+  <h3>🚢 Vessel Strikes</h3>
+  <p>
+    Surface basking and slow cruising speeds make whale sharks vulnerable to commercial ship collisions. Because carcasses sink, mortalities are substantially underreported.
+  </p>
+</div>
+
+<div class="threat-card">
+  <h3>🎣 Bycatch &amp; Fishing Gear</h3>
+  <p>
+    Tuna schools aggregate beneath whale sharks, leading purse-seine vessels to set nets around them. Entanglement in nets and abandoned ghost gear causes severe injuries and drowning.
+  </p>
+</div>
+
+<div class="threat-card">
+  <h3>⚓ Habitat Disturbance</h3>
+  <p>
+    Industrial shipping engine noise disrupts navigation. Unmanaged tourism and boat crowding can alter foraging behavior and displace sharks from aggregation bays like Wreck Bay.
+  </p>
+</div>
+
+<div class="threat-card">
+  <h3>🌡️ Marine Ecosystem Shifts</h3>
+  <p>
+    Marine heatwaves and warming alter coral spawning timing and displace plankton blooms, forcing sharks to travel farther to find sufficient food patches.
+  </p>
+</div>
+
+</div>
 
 </div>

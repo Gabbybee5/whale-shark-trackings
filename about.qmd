@@ -205,10 +205,10 @@ main.content.page-columns {
 
 ## Why Were the Whale Sharks Tracked?
 
-Whale sharks (*Rhincodon typus*) are listed as globally **Endangered**, yet for decades almost nothing was known about where they travel in the southwest Pacific. Researchers from the **Biopixel Oceans Foundation** and **James Cook University** combined historical citizen-science sightings (2007–2024, via *Sharkbook* and *Eye on the Reef*) with satellite tags placed on **18 individual sharks** (2018–2023) to answer key conservation questions:
+Whale sharks (*Rhincodon typus*) are globally **Endangered**. Researchers combined citizen-science sightings (2007–2024, via *Sharkbook* and *Eye on the Reef*) with satellite tags on **18 individual sharks** (2018–2023) to answer key conservation questions:
 
-- **Mapping Hidden Migrations:** Satellite telemetry reveals whether sharks stay on local reefs year-round or roam across deep ocean basins and international borders toward Papua New Guinea and the wider Indo-Pacific.
-- **Guiding Marine Protection:** Tracking where sharks surface and travel helps pinpoint overlaps with commercial shipping lanes, fishing activity, and protected zones inside the Great Barrier Reef and Coral Sea Marine Parks.
+- **Mapping Hidden Migrations:** Satellite telemetry reveals whether sharks stay on local reefs year-round or roam across deep ocean basins toward Papua New Guinea and the wider Indo-Pacific.
+- **Guiding Marine Protection:** Tracking where sharks surface helps pinpoint overlaps with shipping lanes, fishing activity, and protected zones inside the Great Barrier Reef and Coral Sea Marine Parks.
 
 </div>
 
@@ -218,8 +218,8 @@ Whale sharks (*Rhincodon typus*) are listed as globally **Endangered**, yet for 
     <h2>Why Were They Recorded in This Specific Area?</h2>
     <p>Only about 30 whale shark aggregation sites are known worldwide, and until recently <strong>none</strong> had been confirmed anywhere on Australia's east coast or in the southwest Pacific:</p>
     <ul>
-      <li><strong>The Wreck Bay Discovery:</strong> Sightings and tagging centered on <strong>Wreck Bay</strong> at the remote northern tip of the Great Barrier Reef (along with outer-shelf waters off Cairns and Cooktown)—the first whale shark aggregation ever documented in eastern Australia.</li>
-      <li><strong>A Seasonal Feeding Hotspot:</strong> Along this edge of the Coral Sea, steep outer-reef drop-offs meet nutrient-rich ocean upwellings. During late spring and early austral summer (November–December), mass coral and fish spawning events trigger dense plankton blooms that draw whale sharks to the surface in predictable numbers, giving researchers a rare window to find and tag them.</li>
+      <li><strong>The Wreck Bay Discovery:</strong> Sightings and tagging centered on <strong>Wreck Bay</strong> at the northern Great Barrier Reef—the first whale shark aggregation documented in eastern Australia.</li>
+      <li><strong>A Seasonal Feeding Hotspot:</strong> Steep outer-reef drop-offs meet nutrient-rich upwellings. During late spring and austral summer (November–December), coral and fish spawning events trigger dense plankton blooms that draw whale sharks to the surface in predictable numbers, giving researchers a window to find and tag them.</li>
     </ul>
   </div>
   <div class="split-card-media">
@@ -228,3 +228,17 @@ Whale sharks (*Rhincodon typus*) are listed as globally **Endangered**, yet for 
   </div>
 </div>
 ```
+
+<div class="info-card">
+
+## Primary Dataset
+
+Miller, I. B., et al. (2025). The Needle in the Haystack: Uncovering the First Whale Shark (*Rhincodon typus*) Aggregation in the Coral Sea. *Ecology and Evolution*, 15, e71552.
+
+- [Read the published research paper](https://doi.org/10.1002/ece3.71552)
+- [Access the original CSIRO dataset](https://www.marine.csiro.au/ipt/resource?r=whale_shark_coral_sea)
+
+Licensed under [Creative Commons Attribution 4.0](https://creativecommons.org/licenses/by/4.0/). Credit CSIRO and the original researchers when using it.
+
+</div>
+

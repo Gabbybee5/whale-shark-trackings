@@ -295,6 +295,154 @@ main.content.page-columns {
   margin: -0.55rem 0 0.75rem 0;
   opacity: 0.55;
 }
+
+/* Limitations of the Research Styles */
+.limitations-section {
+  margin-top: 2.75rem;
+  margin-bottom: 2rem;
+}
+
+.limitations-header {
+  border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+  padding-bottom: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.limitations-eyebrow {
+  display: inline-block;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--ocean-coral, #ff8573);
+  background: rgba(255, 133, 115, 0.14);
+  border: 1px solid rgba(255, 133, 115, 0.42);
+  padding: 0.3rem 0.8rem;
+  border-radius: 999px;
+  margin-bottom: 0.75rem;
+}
+
+.limitations-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 0.5rem 0;
+}
+
+.limitations-intro {
+  font-size: 0.98rem;
+  line-height: 1.6;
+  color: #dbeafe;
+  margin: 0;
+  max-width: 920px;
+}
+
+.limitations-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 1.75rem;
+}
+
+.limitation-item {
+  background: rgba(7, 20, 38, 0.65);
+  border: 1px solid rgba(125, 211, 252, 0.2);
+  border-radius: 14px;
+  padding: 1.25rem 1.35rem;
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  backdrop-filter: blur(10px);
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.limitation-item:hover {
+  transform: translateY(-2px);
+  border-color: rgba(34, 211, 238, 0.45);
+  box-shadow: 0 8px 24px rgba(4, 12, 26, 0.35);
+}
+
+.limitation-icon {
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  border-radius: 12px;
+  background: rgba(34, 211, 238, 0.12);
+  border: 1px solid rgba(34, 211, 238, 0.28);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+}
+
+.limitation-item:nth-child(2) .limitation-icon {
+  background: rgba(255, 133, 115, 0.12);
+  border-color: rgba(255, 133, 115, 0.3);
+}
+
+.limitation-item:nth-child(3) .limitation-icon {
+  background: rgba(45, 212, 191, 0.12);
+  border-color: rgba(45, 212, 191, 0.3);
+}
+
+.limitation-item:nth-child(4) .limitation-icon {
+  background: rgba(168, 85, 247, 0.12);
+  border-color: rgba(168, 85, 247, 0.3);
+}
+
+.limitation-item:nth-child(5) .limitation-icon {
+  background: rgba(245, 158, 11, 0.12);
+  border-color: rgba(245, 158, 11, 0.3);
+}
+
+.limitation-item:nth-child(6) .limitation-icon {
+  background: rgba(56, 189, 248, 0.12);
+  border-color: rgba(56, 189, 248, 0.3);
+}
+
+.limitation-body {
+  flex: 1;
+}
+
+.limitation-name {
+  font-size: 1.08rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 0.35rem 0;
+}
+
+.limitation-text {
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: #dbeafe;
+  margin: 0;
+}
+
+.limitations-conclusion {
+  background: rgba(13, 37, 65, 0.7);
+  border: 1px solid rgba(255, 133, 115, 0.35);
+  border-left: 4px solid var(--ocean-coral, #ff8573);
+  border-radius: 12px;
+  padding: 1.25rem 1.45rem;
+  backdrop-filter: blur(8px);
+}
+
+.limitations-conclusion h4 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 0.4rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.limitations-conclusion p {
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: #f1f5f9;
+  margin: 0;
+}
 </style>
 
 <div class="hero-banner">
@@ -404,5 +552,91 @@ main.content.page-columns {
     </div>
   </div>
 
+</div>
+
+<!-- Limitations of the Research Section -->
+<div class="info-card limitations-section">
+  <div class="limitations-header">
+    <div class="limitations-eyebrow">Scientific Rigor &amp; Context</div>
+    <h2 class="limitations-title">Limitations of the Research</h2>
+    <p class="limitations-intro">
+      Interpreting tracking results requires understanding both what the data demonstrates and where uncertainties remain.
+    </p>
+  </div>
+
+  <div class="limitations-grid">
+    <!-- Limitation 1: Sample Size -->
+    <div class="limitation-item">
+      <div class="limitation-icon">🦈</div>
+      <div class="limitation-body">
+        <h3 class="limitation-name">Limited Sample Size</h3>
+        <p class="limitation-text">
+          Only 18 whale sharks were satellite tagged. A sample of 18 sharks may not represent the movement habits, age classes, or sex ratios of every whale shark throughout the wider Coral Sea.
+        </p>
+      </div>
+    </div>
+
+    <!-- Limitation 2: Tracking Gaps -->
+    <div class="limitation-item">
+      <div class="limitation-icon">📡</div>
+      <div class="limitation-body">
+        <h3 class="limitation-name">Tracking Gaps</h3>
+        <p class="limitation-text">
+          Transmissions only occur when the tag breaches the surface. Gaps between locations do not mean a shark was absent; the shark may simply have been traveling or foraging at depth.
+        </p>
+      </div>
+    </div>
+
+    <!-- Limitation 3: Historical Sightings Bias -->
+    <div class="limitation-item">
+      <div class="limitation-icon">📍</div>
+      <div class="limitation-body">
+        <h3 class="limitation-name">Historical Sightings</h3>
+        <p class="limitation-text">
+          Historical sightings depend on where people reported whale sharks (such as dive destinations or tourism routes). Some locations have more sightings simply because they were visited more frequently.
+        </p>
+      </div>
+    </div>
+
+    <!-- Limitation 4: Behavioral Information -->
+    <div class="limitation-item">
+      <div class="limitation-icon">🏊</div>
+      <div class="limitation-body">
+        <h3 class="limitation-name">Limited Behavioral Information</h3>
+        <p class="limitation-text">
+          Satellite telemetry records coordinates and surface uplinks, but does not directly reveal whether a shark was feeding, resting, mating, or diving. Surface presence alone should not be mistaken for confirmed feeding activity.
+        </p>
+      </div>
+    </div>
+
+    <!-- Limitation 5: Geographic Scope -->
+    <div class="limitation-item">
+      <div class="limitation-icon">🌏</div>
+      <div class="limitation-body">
+        <h3 class="limitation-name">Geographic Limitations</h3>
+        <p class="limitation-text">
+          This dataset focuses on the Coral Sea, Great Barrier Reef shelf, and western Pacific waters. Findings reflect regional oceanography and should not automatically be applied to all whale shark populations worldwide.
+        </p>
+      </div>
+    </div>
+
+    <!-- Limitation 6: Tag Differences -->
+    <div class="limitation-item">
+      <div class="limitation-icon">🏷️</div>
+      <div class="limitation-body">
+        <h3 class="limitation-name">Tag Limitations</h3>
+        <p class="limitation-text">
+          Tag attachment retention, battery longevity, biofouling, and satellite passes create differences in how long and how reliably each tag transmits.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="limitations-conclusion">
+    <h4><span>💡</span> Why Acknowledging Limitations Matters in Science</h4>
+    <p>
+      Recognizing what data can and cannot prove protects researchers from drawing premature conclusions, guides future telemetry studies, and ensures marine protection measures are founded on solid, transparent evidence.
+    </p>
+  </div>
 </div>
 ```

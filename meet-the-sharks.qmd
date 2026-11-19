@@ -124,14 +124,23 @@ main.content.page-columns {
 
 .data-table th, .data-table td {
   text-align: left;
-  padding: 0.65rem 0.85rem;
-  border-bottom: 1px solid #e2e8f0;
+  padding: 0.7rem 0.9rem;
+  border-bottom: 1px solid rgba(125, 211, 252, 0.15);
 }
 
 .data-table th {
-  background-color: #f8fafc;
-  color: #0f172a;
+  background-color: rgba(7, 20, 38, 0.85);
+  color: #ffffff;
   font-weight: 700;
+  border-bottom: 2px solid rgba(125, 211, 252, 0.3);
+}
+
+.data-table td {
+  color: #e2e8f0;
+}
+
+.data-table tr:hover td {
+  background: rgba(13, 37, 65, 0.35);
 }
 
 .shark-deck-nav {
@@ -422,6 +431,173 @@ main.content.page-columns {
     grid-template-columns: 1fr;
   }
 }
+
+/* Comparing Individual Whale Sharks Styles */
+.compare-controls-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(7, 20, 38, 0.65);
+  border: 1px solid rgba(125, 211, 252, 0.22);
+  border-radius: 12px;
+  padding: 0.9rem 1.15rem;
+  margin: 1.25rem 0 1rem 0;
+  backdrop-filter: blur(10px);
+}
+
+.compare-group {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.compare-group-label {
+  font-size: 0.74rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ocean-coral, #ff8573);
+  margin-right: 0.25rem;
+}
+
+.metric-btn, .filter-sex-btn, .sort-btn {
+  font-family: inherit;
+  font-size: 0.82rem;
+  font-weight: 600;
+  border-radius: 999px;
+  padding: 0.35rem 0.8rem;
+  cursor: pointer;
+  border: 1px solid rgba(125, 211, 252, 0.22);
+  background: rgba(13, 37, 65, 0.65);
+  color: #cbd5e1;
+  transition: all 0.2s ease;
+}
+
+.metric-btn:hover, .filter-sex-btn:hover, .sort-btn:hover {
+  background: rgba(34, 211, 238, 0.2);
+  border-color: rgba(34, 211, 238, 0.5);
+  color: #ffffff;
+}
+
+.metric-btn.active, .filter-sex-btn.active, .sort-btn.active {
+  background: linear-gradient(135deg, rgba(34, 211, 238, 0.35) 0%, rgba(45, 212, 191, 0.45) 100%);
+  color: #ffffff;
+  border-color: var(--ocean-cyan, #22d3ee);
+  box-shadow: 0 0 10px rgba(34, 211, 238, 0.35);
+  font-weight: 700;
+}
+
+.chart-stage {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  margin: 1rem 0 1.5rem 0;
+}
+
+.chart-bar-row {
+  display: grid;
+  grid-template-columns: 155px 1fr 125px;
+  align-items: center;
+  gap: 0.85rem;
+  background: rgba(7, 20, 38, 0.65);
+  border: 1px solid rgba(125, 211, 252, 0.18);
+  border-radius: 10px;
+  padding: 0.65rem 1rem;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+}
+
+.chart-bar-row:hover {
+  background: rgba(13, 37, 65, 0.85);
+  border-color: rgba(34, 211, 238, 0.5);
+  transform: translateX(4px);
+  box-shadow: 0 4px 16px rgba(4, 12, 26, 0.45);
+}
+
+.chart-label-col {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: #ffffff;
+}
+
+.sex-badge {
+  font-size: 0.66rem;
+  font-weight: 700;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.sex-badge.male {
+  background: rgba(34, 211, 238, 0.18);
+  color: #7dd3fc;
+  border: 1px solid rgba(34, 211, 238, 0.35);
+}
+
+.sex-badge.female {
+  background: rgba(255, 133, 115, 0.2);
+  color: #ff9f91;
+  border: 1px solid rgba(255, 133, 115, 0.4);
+}
+
+.sex-badge.unknown {
+  background: rgba(148, 163, 184, 0.18);
+  color: #cbd5e1;
+  border: 1px solid rgba(148, 163, 184, 0.3);
+}
+
+.chart-track-col {
+  height: 18px;
+  background: rgba(2, 6, 23, 0.55);
+  border: 1px solid rgba(125, 211, 252, 0.15);
+  border-radius: 6px;
+  overflow: hidden;
+  position: relative;
+}
+
+.chart-bar-fill {
+  height: 100%;
+  border-radius: 6px;
+  background: linear-gradient(90deg, #0284c7 0%, var(--ocean-cyan, #22d3ee) 60%, var(--ocean-turquoise, #2dd4bf) 100%);
+  box-shadow: 0 0 10px rgba(34, 211, 238, 0.3);
+  transition: width 0.45s cubic-bezier(0.2, 0.9, 0.4, 1);
+}
+
+.chart-val-col {
+  text-align: right;
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: var(--ocean-cyan, #22d3ee);
+  white-space: nowrap;
+}
+
+.chart-hint {
+  font-size: 0.8rem;
+  color: #94a3b8;
+  margin-top: -0.5rem;
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+@media (max-width: 820px) {
+  .compare-controls-bar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .chart-bar-row {
+    grid-template-columns: 120px 1fr 95px;
+  }
+}
 </style>
 <script>
 const SHARK_ORDER = [
@@ -629,16 +805,136 @@ document.addEventListener('DOMContentLoaded', function() {
   syncPillHearts();
   updateCounter();
   animateVisibleMeters();
+  renderCompareChart();
 });
+
+const SHARK_COMPARE_DATA = [
+  { id: 'megashark', name: 'Megashark', tag: '252324', sex: 'Male', maturity: 'Immature', pings: 423, months: 13.0, days: 398, km: 6073, lats: '16.5°S to 9.7°S', pattern: 'Highest cumulative transmissions; steep summer rise, 49-day winter offshore gap, late-year surge.' },
+  { id: 'alexios', name: 'Alexios', tag: '178953', sex: 'Male', maturity: 'Immature', pings: 357, months: 5.2, days: 159, km: 4307, lats: '18.1°S to 11.1°S', pattern: 'Steady, uninterrupted surface tracking (max gap ≤13 days) along outer Great Barrier Reef corridor.' },
+  { id: 'ali', name: 'Ali', tag: '178954', sex: 'Female', maturity: 'Immature', pings: 273, months: 25.3, days: 771, km: 11378, lats: '18.6°S to 7.9°S', pattern: 'Longest tracked duration (>2 years) and farthest recorded distance, moving in seasonal steps into PNG waters.' },
+  { id: 'sharpie', name: 'Sharpie', tag: '252325', sex: 'Male', maturity: 'Immature', pings: 261, months: 3.2, days: 98, km: 1544, lats: '13.5°S to 11.3°S', pattern: 'Very steep 3-month summer surface burst (~2.7 uplinks/day) confined to northern reef band.' },
+  { id: 'juanita', name: 'Juanita', tag: '172900', sex: 'Unknown', maturity: 'Immature', pings: 204, months: 4.3, days: 133, km: 2642, lats: '16.6°S to 8.1°S', pattern: 'Early spring tagging; wide 8.5° latitudinal transit across the northern Coral Sea basin.' },
+  { id: 'gbr1', name: 'GBR1', tag: '172899', sex: 'Unknown', maturity: 'Immature', pings: 177, months: 4.8, days: 147, km: 3677, lats: '14.2°S to 6.3°S', pattern: 'Northernmost recorded position (6.3°S near PNG); unbroken uplink line (max gap ≤4 days).' },
+  { id: 'beizam', name: 'Beizam', tag: '243952', sex: 'Male', maturity: 'Subadult', pings: 98, months: 2.2, days: 69, km: 1846, lats: '17.2°S to 11.3°S', pattern: 'Only confirmed subadult; rapid offshore transit (~27 km/day) spanning nearly 6 degrees of latitude.' },
+  { id: 'blancpain', name: 'Blancpain', tag: '178957', sex: 'Female', maturity: 'Immature', pings: 73, months: 17.3, days: 527, km: 1943, lats: '14.5°S to 8.1°S', pattern: 'Longest silent gap (276 consecutive days / ~9 months) before re-emerging to ping near PNG.' },
+  { id: 'gbr2', name: 'GBR2', tag: '176413', sex: 'Male', maturity: 'Immature', pings: 69, months: 2.9, days: 89, km: 2675, lats: '15.1°S to 10.8°S', pattern: 'High daily travel speeds (~30 km/day between uplinks) moving briskly across outer Coral Sea reefs.' },
+  { id: 'infamis', name: 'Infamis', tag: '243954', sex: 'Male', maturity: 'Immature', pings: 66, months: 2.4, days: 74, km: 644, lats: '13.8°S to 12.2°S', pattern: 'Strong localized fidelity within a narrow 1.6° latitude band along northern shelf edge.' },
+  { id: 'jaap', name: 'Jaap', tag: '178948', sex: 'Male', maturity: 'Immature', pings: 63, months: 1.3, days: 40, km: 255, lats: '12.2°S to 11.6°S', pattern: 'Focused tightly around Wreck Bay hotspot during late November–December coral spawning window.' },
+  { id: 'halliday', name: 'Halliday', tag: '243955', sex: 'Male', maturity: 'Immature', pings: 53, months: 1.3, days: 40, km: 772, lats: '15.0°S to 11.3°S', pattern: 'Over 39 days traveled 3x farther than Jaap (~772 km), moving southward along outer reef margins.' },
+  { id: 'hugh', name: 'Hugh', tag: '243951', sex: 'Male', maturity: 'Immature', pings: 53, months: 0.2, days: 8, km: 143, lats: '12.2°S to 12.0°S', pattern: 'Intense short-term surface burst (~7.6 uplinks/day) right after tagging at Wreck Bay.' },
+  { id: 'fifty_fathoms', name: 'Fifty_Fathoms', tag: '178951', sex: 'Male', maturity: 'Immature', pings: 24, months: 1.2, days: 38, km: 868, lats: '14.6°S to 11.5°S', pattern: 'Traveled nearly 870 km across 3° of latitude with only 24 uplinks, indicating deeper cruising.' },
+  { id: 'sapphire', name: 'Sapphire', tag: '176409', sex: 'Male', maturity: 'Immature', pings: 24, months: 0.3, days: 10, km: 1387, lats: '16.5°S to 12.7°S', pattern: 'Tracked in late summer (March), traveling nearly 1,400 km in 9 days across the Coral Sea.' },
+  { id: 'andrew', name: 'Andrew', tag: '243953', sex: 'Male', maturity: 'Immature', pings: 18, months: 0.2, days: 6, km: 76, lats: '12.2°S to 11.9°S', pattern: 'Short 5-day local cluster at northern reef tagging ground before early tag drop or diving.' },
+  { id: 'dotti', name: 'Dotti', tag: '178949', sex: 'Male', maturity: 'Immature', pings: 10, months: 0.1, days: 4, km: 20, lats: '12.2°S', pattern: 'Brief 3-day local aggregation snapshot at 12.2°S during November 2019 expedition.' },
+  { id: 'ambitious', name: 'Ambitious', tag: '176407', sex: 'Unknown', maturity: 'Immature', pings: 9, months: 0.2, days: 7, km: 19, lats: '12.2°S to 12.1°S', pattern: 'Shortest tagged record (9 pings over 6 days), illustrating marine telemetry retention limits.' }
+];
+
+let compareMetric = 'pings';
+let compareSex = 'all';
+let compareSort = 'desc';
+
+function setCompareMetric(metric, btn) {
+  compareMetric = metric;
+  document.querySelectorAll('.metric-btn').forEach(function(b) {
+    b.classList.toggle('active', b === btn);
+  });
+  renderCompareChart();
+}
+
+function setCompareSex(sex, btn) {
+  compareSex = sex;
+  document.querySelectorAll('.filter-sex-btn').forEach(function(b) {
+    b.classList.toggle('active', b === btn);
+  });
+  renderCompareChart();
+}
+
+function setCompareSort(sort, btn) {
+  compareSort = sort;
+  document.querySelectorAll('.sort-btn').forEach(function(b) {
+    b.classList.toggle('active', b === btn);
+  });
+  renderCompareChart();
+}
+
+function renderCompareChart() {
+  const container = document.getElementById('compare-chart-stage');
+  if (!container) return;
+
+  let list = SHARK_COMPARE_DATA.filter(function(d) {
+    if (compareSex === 'all') return true;
+    return d.sex === compareSex;
+  });
+
+  list.sort(function(a, b) {
+    if (compareSort === 'asc') {
+      return a[compareMetric] - b[compareMetric];
+    } else if (compareSort === 'desc') {
+      return b[compareMetric] - a[compareMetric];
+    } else if (compareSort === 'name') {
+      return a.name.localeCompare(b.name);
+    }
+    return 0;
+  });
+
+  const maxVal = Math.max.apply(null, SHARK_COMPARE_DATA.map(function(d) { return d[compareMetric]; })) || 1;
+
+  container.innerHTML = '';
+  list.forEach(function(d) {
+    const val = d[compareMetric];
+    const pct = Math.max(4, Math.min(100, Math.round((val / maxVal) * 100)));
+
+    let displayVal = '';
+    if (compareMetric === 'pings') {
+      displayVal = val + ' pings';
+    } else if (compareMetric === 'months') {
+      displayVal = val.toFixed(1) + ' mo (' + d.days + ' d)';
+    } else if (compareMetric === 'km') {
+      displayVal = '~' + val.toLocaleString() + ' km';
+    }
+
+    const row = document.createElement('div');
+    row.className = 'chart-bar-row';
+    row.setAttribute('role', 'button');
+    row.setAttribute('tabindex', '0');
+    row.title = 'Click to jump to ' + d.name + ' profile';
+    row.onclick = function() {
+      selectShark(d.id);
+      const targetSec = document.getElementById('shark-' + d.id);
+      if (targetSec) {
+        targetSec.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    };
+    row.onkeydown = function(e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        row.click();
+      }
+    };
+
+    const sexClass = d.sex.toLowerCase();
+    row.innerHTML = `
+      <div class="chart-label-col">
+        <span>${d.name}</span>
+        <span class="sex-badge ${sexClass}">${d.sex}</span>
+      </div>
+      <div class="chart-track-col">
+        <div class="chart-bar-fill" style="width: ${pct}%;"></div>
+      </div>
+      <div class="chart-val-col">${displayVal}</div>
+    `;
+    container.appendChild(row);
+  });
+}
 </script>
 
 <div class="hero-banner">
   <img class="hero-bg-img" src="images/sebastian-pena-lambarri-Abj_zUko6Mg-unsplash.jpg" alt="Distinctive white spot and stripe pattern of an individual whale shark">
   <div class="hero-content">
-    <div class="hero-eyebrow">Key Findings & Graph Breakdown</div>
-    <h1 class="hero-title">Discover the Profiles of Each Individual Whale Shark Tracked</h1>
+    <div class="hero-eyebrow">Individual Profiles &amp; Demographics</div>
+    <h1 class="hero-title">Profiles of Individual Whale Sharks Tracked</h1>
     <p class="hero-subtitle">
-      This project analyzes 2,391 whale shark (<em>Rhincodon typus</em>) observations in Australia's Coral Sea collected by the Biopixel Oceans Foundation and James Cook University. The dataset combines 2,255 satellite transmissions from 18 individually named sharks along the Great Barrier Reef and Coral Sea reefs with 136 opportunistic sightings recorded from 2007 to 2018. Explore the profiles below to see each shark's trajectory, deep-water plateaus, and seasonal surges.
+      2,391 whale shark (<em>Rhincodon typus</em>) observations in Australia's Coral Sea: 2,255 satellite transmissions from 18 named sharks along the Great Barrier Reef and Coral Sea reefs with 136 opportunistic sightings recorded from 2007 to 2018.
     </p>
   </div>
 </div>
@@ -648,7 +944,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 ## Ecological Patterns in the Plot — By Named Whale Shark
 
-Pick any whale shark below, flip through with **Previous / Next**, or try **🎲 Random Shark** to meet each individual:
+Pick any whale shark below, or flip through with **Previous / Next**:
 
 ```{=html}
 <div class="shark-deck-nav">
@@ -958,98 +1254,272 @@ Pick any whale shark below, flip through with **Previous / Next**, or try **🎲
 
 </div>
 
-<div class="seasonal-grid">
+<div class="info-card" id="comparing-individual-whale-sharks">
 
-<div class="info-card">
-
-## Peak Austral Summer Window (November–February)
-
-Looking at the monthly bar chart on the **Overview** tab highlights a strong warm-season surge in the Coral Sea: transmissions climb dramatically starting in late spring and summer as whale sharks aggregate along outer reef shelf edges to feed near the surface on dense plankton blooms and coral/fish spawning events.
-
+<div style="border-bottom: 1px solid rgba(148, 163, 184, 0.2); padding-bottom: 1rem; margin-bottom: 1.5rem;">
+  <div style="display: inline-block; text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.78rem; font-weight: 600; color: var(--ocean-coral, #ff8573); background: rgba(255, 133, 115, 0.14); border: 1px solid rgba(255, 133, 115, 0.42); padding: 0.3rem 0.8rem; border-radius: 999px; margin-bottom: 0.75rem;">
+    Telemetry Synthesis &amp; Demographics
+  </div>
+  <h2 style="font-size: 1.75rem; font-weight: 700; color: #ffffff; margin: 0 0 0.5rem 0; border: none; padding: 0;">
+    Comparing Individual Whale Sharks
+  </h2>
+  <p style="font-size: 0.98rem; line-height: 1.6; color: #dbeafe; margin: 0; max-width: 960px;">
+    Empirical tracking data for all 18 tagged whale sharks in the Coral Sea study, comparing transmission frequency, tracking duration, recorded distances, and sex.
+  </p>
 </div>
 
-<div class="info-card">
-
-## Mid-Year Offshore Dispersal (May–September)
-
-Detection counts drop during the austral winter not because whale sharks vanish from the Pacific, but because individuals disperse widely across deep open-ocean basins and spend longer intervals foraging at depth where fin-mounted satellite tags cannot transmit through seawater.
-
+<div style="margin-bottom: 1rem;">
+  <h3 style="font-size: 1.25rem; font-weight: 600; color: #ffffff; margin-top: 0; margin-bottom: 0.35rem; display: flex; align-items: center; gap: 0.5rem;">
+    <span>📊</span> Interactive Comparison Chart
+  </h3>
 </div>
 
+```{=html}
+<div class="compare-controls-bar">
+  <div class="compare-group">
+    <span class="compare-group-label">Metric:</span>
+    <button type="button" class="metric-btn active" onclick="setCompareMetric('pings', this)">🛰️ Transmissions</button>
+    <button type="button" class="metric-btn" onclick="setCompareMetric('months', this)">⏱️ Duration (Months)</button>
+    <button type="button" class="metric-btn" onclick="setCompareMetric('km', this)">🌊 Distance (km)</button>
+  </div>
+  <div class="compare-group">
+    <span class="compare-group-label">Sex:</span>
+    <button type="button" class="filter-sex-btn active" onclick="setCompareSex('all', this)">All (18)</button>
+    <button type="button" class="filter-sex-btn" onclick="setCompareSex('Male', this)">Male (13)</button>
+    <button type="button" class="filter-sex-btn" onclick="setCompareSex('Female', this)">Female (2)</button>
+    <button type="button" class="filter-sex-btn" onclick="setCompareSex('Unknown', this)">Unknown (3)</button>
+  </div>
+  <div class="compare-group">
+    <span class="compare-group-label">Sort:</span>
+    <button type="button" class="sort-btn active" onclick="setCompareSort('desc', this)">Highest First</button>
+    <button type="button" class="sort-btn" onclick="setCompareSort('asc', this)">Lowest First</button>
+    <button type="button" class="sort-btn" onclick="setCompareSort('name', this)">A–Z</button>
+  </div>
 </div>
 
-<div class="info-card">
+<div id="compare-chart-stage" class="chart-stage"></div>
+<div class="chart-hint">
+  <span>💡</span>
+  <em>Tip: Click any shark's row above to jump directly to its individual profile and curve analysis.</em>
+</div>
+```
 
-## Summary Table of Key Whale Shark Trajectories
+<div style="margin-top: 2rem; margin-bottom: 0.85rem;">
+  <h3 style="font-size: 1.25rem; font-weight: 600; color: #ffffff; margin-top: 0; margin-bottom: 0.35rem; display: flex; align-items: center; gap: 0.5rem;">
+    <span>📋</span> Comprehensive Comparative Data Table
+  </h3>
+  <p style="font-size: 0.92rem; color: #cbd5e1; margin: 0;">
+    Empirical data for all 18 tagged sharks and the long-term opportunistic sightings baseline (CSIRO/Biopixel dataset).
+  </p>
+</div>
 
+<div style="overflow-x: auto;">
 <table class="data-table">
   <thead>
     <tr>
-      <th>Whale Shark / Record</th>
-      <th>Observation Type</th>
-      <th>First Recorded</th>
-      <th>Last Recorded</th>
-      <th>Span (Months)</th>
-      <th>Total Records</th>
-      <th>Pattern on Graph</th>
+      <th>Whale Shark (Tag ID)</th>
+      <th>Sex</th>
+      <th>Maturity</th>
+      <th>Transmissions</th>
+      <th>Tracking Span</th>
+      <th>Min. Distance</th>
+      <th>Latitude Range</th>
+      <th>Notable Tracking Pattern &amp; Behavior</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td><strong>Whale Shark (Megashark)</strong></td>
-      <td>Satellite Tag</td>
-      <td>2023-11-30</td>
-      <td>2024-12-31</td>
-      <td>13.0 months</td>
+      <td><strong>Megashark</strong> (252324)</td>
+      <td><span class="sex-badge male">Male</span></td>
+      <td>Immature</td>
       <td><strong>423</strong></td>
-      <td>Highest individual curve; mid-year plateau followed by late-year surge</td>
+      <td>13.0 mo (398 d)</td>
+      <td>~6,073 km</td>
+      <td>16.5°S – 9.7°S</td>
+      <td>Highest transmission total; steep summer rise, 49-day mid-year offshore gap, late-year surge.</td>
     </tr>
     <tr>
-      <td><strong>Whale Shark (Alexios)</strong></td>
-      <td>Satellite Tag</td>
-      <td>2021-12-05</td>
-      <td>2022-05-12</td>
-      <td>5.2 months</td>
+      <td><strong>Alexios</strong> (178953)</td>
+      <td><span class="sex-badge male">Male</span></td>
+      <td>Immature</td>
       <td><strong>357</strong></td>
-      <td>Rapid, steady surface-tracking climb across 5 months</td>
+      <td>5.2 mo (159 d)</td>
+      <td>~4,307 km</td>
+      <td>18.1°S – 11.1°S</td>
+      <td>Rapid, steady surface-tracking climb across 5 months with no gap &gt;13 days along outer reef corridor.</td>
     </tr>
     <tr>
-      <td><strong>Whale Shark (Ali)</strong></td>
-      <td>Satellite Tag</td>
-      <td>2021-12-06</td>
-      <td>2024-01-15</td>
-      <td>25.3 months</td>
+      <td><strong>Ali</strong> (178954)</td>
+      <td><span class="sex-badge female">Female</span></td>
+      <td>Immature</td>
       <td><strong>273</strong></td>
-      <td>Longest tagged shark span (&gt;2 years) with multi-season steps</td>
+      <td>25.3 mo (771 d)</td>
+      <td>~11,378 km</td>
+      <td>18.6°S – 7.9°S</td>
+      <td>Longest tagged span (&gt;2 yrs) and farthest distance, reaching Papua New Guinea in seasonal steps.</td>
     </tr>
     <tr>
-      <td><strong>Whale Shark (Sharpie)</strong></td>
-      <td>Satellite Tag</td>
-      <td>2023-12-01</td>
-      <td>2024-03-07</td>
-      <td>3.2 months</td>
+      <td><strong>Sharpie</strong> (252325)</td>
+      <td><span class="sex-badge male">Male</span></td>
+      <td>Immature</td>
       <td><strong>261</strong></td>
-      <td>Very steep 3-month summer surface burst</td>
+      <td>3.2 mo (98 d)</td>
+      <td>~1,544 km</td>
+      <td>13.5°S – 11.3°S</td>
+      <td>Very steep 3-month summer surface burst (~2.7 uplinks/day) confined to northern reef band.</td>
     </tr>
     <tr>
-      <td><strong>Whale Shark (Juanita)</strong></td>
-      <td>Satellite Tag</td>
-      <td>2023-11-03</td>
-      <td>2024-03-14</td>
-      <td>4.3 months</td>
+      <td><strong>Juanita</strong> (172900)</td>
+      <td><span class="sex-badge unknown">Unknown</span></td>
+      <td>Immature</td>
       <td><strong>204</strong></td>
-      <td>Consistent summer reef foraging trajectory</td>
+      <td>4.3 mo (133 d)</td>
+      <td>~2,642 km</td>
+      <td>16.6°S – 8.1°S</td>
+      <td>Early spring tagging; wide 8.5° latitudinal transit across northern Coral Sea basin.</td>
     </tr>
     <tr>
-      <td><strong>Whale Shark (Coral Sea Sighting)</strong></td>
-      <td>Opportunistic Sightings</td>
-      <td>2007-11-05</td>
-      <td>2018-10-24</td>
-      <td>131.6 months</td>
+      <td><strong>GBR1</strong> (172899)</td>
+      <td><span class="sex-badge unknown">Unknown</span></td>
+      <td>Immature</td>
+      <td><strong>177</strong></td>
+      <td>4.8 mo (147 d)</td>
+      <td>~3,677 km</td>
+      <td>14.2°S – 6.3°S</td>
+      <td>Northernmost recorded movement (6.3°S in PNG); unbroken uplinks (max gap ≤4 days).</td>
+    </tr>
+    <tr>
+      <td><strong>Beizam</strong> (243952)</td>
+      <td><span class="sex-badge male">Male</span></td>
+      <td>Subadult</td>
+      <td><strong>98</strong></td>
+      <td>2.2 mo (69 d)</td>
+      <td>~1,846 km</td>
+      <td>17.2°S – 11.3°S</td>
+      <td>Only subadult shark; rapid offshore transit (~27 km/day) spanning nearly 6 degrees of latitude.</td>
+    </tr>
+    <tr>
+      <td><strong>Blancpain</strong> (178957)</td>
+      <td><span class="sex-badge female">Female</span></td>
+      <td>Immature</td>
+      <td><strong>73</strong></td>
+      <td>17.3 mo (527 d)</td>
+      <td>~1,943 km</td>
+      <td>14.5°S – 8.1°S</td>
+      <td>Longest silent gap (276 consecutive days / ~9 mo) while migrating submerged into northern waters.</td>
+    </tr>
+    <tr>
+      <td><strong>GBR2</strong> (176413)</td>
+      <td><span class="sex-badge male">Male</span></td>
+      <td>Immature</td>
+      <td><strong>69</strong></td>
+      <td>2.9 mo (89 d)</td>
+      <td>~2,675 km</td>
+      <td>15.1°S – 10.8°S</td>
+      <td>High daily travel speeds (~30 km/day between uplinks) across outer Coral Sea reefs.</td>
+    </tr>
+    <tr>
+      <td><strong>Infamis</strong> (243954)</td>
+      <td><span class="sex-badge male">Male</span></td>
+      <td>Immature</td>
+      <td><strong>66</strong></td>
+      <td>2.4 mo (74 d)</td>
+      <td>~644 km</td>
+      <td>13.8°S – 12.2°S</td>
+      <td>Strong localized site fidelity within a narrow 1.6° latitude band along northern shelf edge.</td>
+    </tr>
+    <tr>
+      <td><strong>Jaap</strong> (178948)</td>
+      <td><span class="sex-badge male">Male</span></td>
+      <td>Immature</td>
+      <td><strong>63</strong></td>
+      <td>1.3 mo (40 d)</td>
+      <td>~255 km</td>
+      <td>12.2°S – 11.6°S</td>
+      <td>Focused tightly around Wreck Bay hotspot during late November–December coral spawning window.</td>
+    </tr>
+    <tr>
+      <td><strong>Halliday</strong> (243955)</td>
+      <td><span class="sex-badge male">Male</span></td>
+      <td>Immature</td>
+      <td><strong>53</strong></td>
+      <td>1.3 mo (40 d)</td>
+      <td>~772 km</td>
+      <td>15.0°S – 11.3°S</td>
+      <td>Traveled 3x farther than Jaap over same 39-day window, moving southward along outer reef margins.</td>
+    </tr>
+    <tr>
+      <td><strong>Hugh</strong> (243951)</td>
+      <td><span class="sex-badge male">Male</span></td>
+      <td>Immature</td>
+      <td><strong>53</strong></td>
+      <td>0.2 mo (8 d)</td>
+      <td>~143 km</td>
+      <td>12.2°S – 12.0°S</td>
+      <td>Intense short-term surface burst (~7.6 uplinks/day) right after tagging at Wreck Bay.</td>
+    </tr>
+    <tr>
+      <td><strong>Fifty_Fathoms</strong> (178951)</td>
+      <td><span class="sex-badge male">Male</span></td>
+      <td>Immature</td>
+      <td><strong>24</strong></td>
+      <td>1.2 mo (38 d)</td>
+      <td>~868 km</td>
+      <td>14.6°S – 11.5°S</td>
+      <td>High distance-to-transmission ratio (~868 km with 24 uplinks), indicating deeper cruising.</td>
+    </tr>
+    <tr>
+      <td><strong>Sapphire</strong> (176409)</td>
+      <td><span class="sex-badge male">Male</span></td>
+      <td>Immature</td>
+      <td><strong>24</strong></td>
+      <td>0.3 mo (10 d)</td>
+      <td>~1,387 km</td>
+      <td>16.5°S – 12.7°S</td>
+      <td>Rapid late-summer (March) transit spanning nearly 1,400 km in 9 days across the Coral Sea.</td>
+    </tr>
+    <tr>
+      <td><strong>Andrew</strong> (243953)</td>
+      <td><span class="sex-badge male">Male</span></td>
+      <td>Immature</td>
+      <td><strong>18</strong></td>
+      <td>0.2 mo (6 d)</td>
+      <td>~76 km</td>
+      <td>12.2°S – 11.9°S</td>
+      <td>Short 5-day local cluster at northern reef tagging ground before early tag drop or diving.</td>
+    </tr>
+    <tr>
+      <td><strong>Dotti</strong> (178949)</td>
+      <td><span class="sex-badge male">Male</span></td>
+      <td>Immature</td>
+      <td><strong>10</strong></td>
+      <td>0.1 mo (4 d)</td>
+      <td>~20 km</td>
+      <td>12.2°S</td>
+      <td>Brief 3-day local aggregation snapshot at 12.2°S during November 2019 expedition.</td>
+    </tr>
+    <tr>
+      <td><strong>Ambitious</strong> (176407)</td>
+      <td><span class="sex-badge unknown">Unknown</span></td>
+      <td>Immature</td>
+      <td><strong>9</strong></td>
+      <td>0.2 mo (7 d)</td>
+      <td>~19 km</td>
+      <td>12.2°S – 12.1°S</td>
+      <td>Shortest tagged record (9 pings over 6 days), illustrating marine telemetry retention limits.</td>
+    </tr>
+    <tr>
+      <td><strong>Coral Sea Sightings</strong> (CSIRO)</td>
+      <td>Various</td>
+      <td>Various</td>
       <td><strong>136</strong></td>
-      <td>Long baseline spanning nearly 11 years across the X-axis</td>
+      <td>131.6 mo (~11 yr)</td>
+      <td>Coral Sea Basin</td>
+      <td>Various</td>
+      <td>Long-term observational baseline from dive vessels, charters, and research cruises (2007–2018).</td>
     </tr>
   </tbody>
 </table>
+</div>
 
 </div>

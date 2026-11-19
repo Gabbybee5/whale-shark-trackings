@@ -8,7 +8,6 @@ project:
     - meet-the-sharks.qmd
     - research-process.qmd
     - ecology-conservation.qmd
-    - "*.qmd"
 
 website:
   title: "Whale Shark Tracking Explorer"
@@ -33,7 +32,6 @@ format:
   html:
     theme: cosmo
     page-layout: full
-    embed-resources: true
     include-after-body:
       text: |
         <style>
@@ -376,13 +374,25 @@ format:
           color: #ffffff !important;
         }
 
+        .irs--shiny .irs-line {
+          background: rgba(148, 163, 184, 0.22) !important;
+          border-color: rgba(125, 211, 252, 0.2) !important;
+        }
+
         .irs--shiny .irs-bar {
           background: var(--ocean-cyan) !important;
           border-color: var(--ocean-cyan) !important;
         }
 
+        .irs--shiny .irs-handle {
+          background: #0b1e36 !important;
+          border: 2px solid var(--ocean-cyan) !important;
+          box-shadow: 0 0 8px rgba(34, 211, 238, 0.4) !important;
+        }
+
         .irs--shiny .irs-from, .irs--shiny .irs-to, .irs--shiny .irs-single {
           background-color: var(--ocean-coral) !important;
+          color: #ffffff !important;
         }
 
         .irs--shiny .irs-grid-text, .irs--shiny .irs-min, .irs--shiny .irs-max {
@@ -410,6 +420,19 @@ format:
           background: rgba(9, 25, 46, 0.88) !important;
           color: #f1f5f9 !important;
           border-color: rgba(56, 189, 248, 0.28) !important;
+        }
+
+        .leaflet-control-layers label {
+          color: #f1f5f9 !important;
+        }
+
+        .leaflet-bar a {
+          color: #22d3ee !important;
+        }
+
+        .leaflet-bar a:hover {
+          background: rgba(34, 211, 238, 0.25) !important;
+          color: #ffffff !important;
         }
 
         /* Smooth scroll-triggered reveal & fade transitions between sections */

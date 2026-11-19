@@ -15,9 +15,8 @@ execute:
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  background-color: #f3f7fa;
-  color: #1e293b;
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  color: var(--ocean-text, #f1f5f9);
 }
 
 /* Hide default empty Quarto title block */
@@ -112,11 +111,13 @@ main.content.page-columns {
   gap: 1.75rem;
   width: 100%;
   margin-bottom: 2rem;
-  background: #ffffff;
+  background: linear-gradient(165deg, rgba(255, 255, 255, 0.08) 0%, var(--ocean-panel, rgba(9, 25, 46, 0.52)) 100%);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   padding: 1.35rem 1.6rem;
   border-radius: 14px;
-  border: 1px solid #e2e8f0;
-  box-shadow: 0 4px 15px rgba(15, 23, 42, 0.05);
+  border: 1px solid var(--ocean-border, rgba(125, 211, 252, 0.24));
+  box-shadow: 0 14px 34px rgba(5, 15, 30, 0.3);
   position: relative;
   z-index: 10;
 }
@@ -125,7 +126,7 @@ main.content.page-columns {
   display: block !important;
   font-weight: 600;
   font-size: 0.9rem;
-  color: #0f172a;
+  color: #ffffff !important;
   margin-bottom: 0.65rem !important;
 }
 
@@ -135,10 +136,12 @@ main.content.page-columns {
 
 /* Plot Card */
 .plot-card {
-  background: #ffffff;
+  background: linear-gradient(165deg, rgba(255, 255, 255, 0.08) 0%, var(--ocean-panel, rgba(9, 25, 46, 0.52)) 100%);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border-radius: 16px;
-  border: 1px solid #e2e8f0;
-  box-shadow: 0 6px 24px rgba(15, 23, 42, 0.06);
+  border: 1px solid var(--ocean-border, rgba(125, 211, 252, 0.24));
+  box-shadow: 0 14px 34px rgba(5, 15, 30, 0.3);
   padding: 1.5rem 1.5rem 1.25rem 1.5rem;
 }
 
@@ -146,7 +149,7 @@ main.content.page-columns {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid #e2e8f0;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.2);
   padding-bottom: 1rem;
   margin-bottom: 1.75rem;
 }
@@ -154,7 +157,7 @@ main.content.page-columns {
 .plot-card-title {
   font-size: 1.25rem;
   font-weight: 700;
-  color: #0f172a;
+  color: #ffffff;
   margin: 0;
 }
 
@@ -166,36 +169,232 @@ main.content.page-columns {
 
 /* Styled Tabset for Switching Between Graphs */
 .panel-tabset .nav-tabs {
-  border-bottom: 2px solid #cbd5e1;
+  border-bottom: 1px solid var(--ocean-border, rgba(125, 211, 252, 0.24));
   margin-bottom: 1.5rem;
   gap: 0.5rem;
 }
 
 .panel-tabset .nav-tabs .nav-link {
-  font-weight: 700;
-  font-size: 1rem;
-  color: #475569;
-  background: #e2e8f0;
-  border: 1px solid transparent;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #dbeafe;
+  background: rgba(9, 25, 46, 0.62);
+  border: 1px solid rgba(148, 163, 184, 0.28);
   border-radius: 10px 10px 0 0;
   padding: 0.75rem 1.4rem;
-  transition: all 0.15s ease-in-out;
+  transition: all 0.2s ease-in-out;
 }
 
 .panel-tabset .nav-tabs .nav-link:hover {
-  color: #0f172a;
-  background: #cbd5e1;
+  color: #ffffff;
+  background: rgba(34, 211, 238, 0.15);
+  border-color: var(--ocean-cyan, #22d3ee);
 }
 
 .panel-tabset .nav-tabs .nav-link.active {
   color: #ffffff;
-  background: linear-gradient(135deg, #0d3b66 0%, #0f766e 100%);
-  border-color: #0d3b66;
+  background: linear-gradient(135deg, rgba(14, 116, 144, 0.9) 0%, rgba(45, 212, 191, 0.8) 100%);
+  border-color: var(--ocean-cyan, #22d3ee);
+  box-shadow: 0 0 18px rgba(34, 211, 238, 0.25);
 }
 
 .cell, .cell-output-display, .plotly.html-widget {
   width: 100% !important;
   max-width: 100% !important;
+}
+
+/* Key Findings at a Glance Section */
+.findings-section {
+  background: linear-gradient(165deg, rgba(255, 255, 255, 0.08) 0%, var(--ocean-panel, rgba(9, 25, 46, 0.52)) 100%);
+  border: 1px solid var(--ocean-border, rgba(125, 211, 252, 0.24));
+  border-radius: 16px;
+  box-shadow: 0 14px 34px rgba(5, 15, 30, 0.3);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  padding: 1.75rem 2rem;
+  margin-bottom: 2rem;
+  color: var(--ocean-text, #f1f5f9);
+}
+
+.findings-header {
+  border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+  padding-bottom: 0.85rem;
+  margin-bottom: 1.5rem;
+}
+
+.findings-eyebrow {
+  display: inline-block;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: var(--ocean-cyan, #22d3ee);
+  background: rgba(34, 211, 238, 0.12);
+  border: 1px solid rgba(34, 211, 238, 0.3);
+  padding: 0.25rem 0.65rem;
+  border-radius: 999px;
+  margin-bottom: 0.45rem;
+}
+
+.findings-title-group h2 {
+  margin: 0;
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.01em;
+}
+
+.findings-subtitle {
+  margin: 0.35rem 0 0 0;
+  font-size: 0.92rem;
+  color: #cbd5e1;
+  line-height: 1.5;
+}
+
+.findings-category-header {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin: 1.25rem 0 0.85rem 0;
+}
+
+.category-tag {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 0.25rem 0.65rem;
+  border-radius: 999px;
+}
+
+.category-tag.dataset {
+  background: rgba(34, 211, 238, 0.15);
+  color: #38bdf8;
+  border: 1px solid rgba(56, 189, 248, 0.35);
+}
+
+.category-tag.paper {
+  background: rgba(45, 212, 191, 0.15);
+  color: #2dd4bf;
+  border: 1px solid rgba(45, 212, 191, 0.35);
+}
+
+.category-note {
+  font-size: 0.82rem;
+  color: #cbd5e1;
+}
+
+.stat-grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+.stat-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+@media (max-width: 1024px) {
+  .stat-grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .stat-grid-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .stat-grid-4,
+  .stat-grid-3 {
+    grid-template-columns: 1fr;
+  }
+}
+
+.stat-card {
+  background: rgba(7, 20, 38, 0.65);
+  border: 1px solid rgba(125, 211, 252, 0.2);
+  border-radius: 12px;
+  padding: 1.25rem 1.15rem;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(34, 211, 238, 0.45);
+  box-shadow: 0 8px 20px rgba(4, 12, 26, 0.35);
+}
+
+.stat-card.card-accent-blue {
+  border-top: 4px solid #38bdf8;
+}
+
+.stat-card.card-accent-teal {
+  border-top: 4px solid #2dd4bf;
+}
+
+.stat-card.card-accent-coral {
+  border-top: 4px solid #ff8573;
+}
+
+.stat-card.card-accent-indigo {
+  border-top: 4px solid #818cf8;
+}
+
+.stat-card.card-accent-cyan {
+  border-top: 4px solid #22d3ee;
+}
+
+.stat-card.card-accent-emerald {
+  border-top: 4px solid #34d399;
+}
+
+.stat-badge {
+  align-self: flex-start;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 0.2rem 0.5rem;
+  border-radius: 6px;
+  margin-bottom: 0.65rem;
+}
+
+.stat-badge.badge-raw {
+  background: rgba(148, 163, 184, 0.2);
+  color: #e2e8f0;
+}
+
+.stat-badge.badge-research {
+  background: rgba(45, 212, 191, 0.18);
+  color: #2dd4bf;
+}
+
+.stat-number {
+  font-size: 2.15rem;
+  font-weight: 800;
+  line-height: 1;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.4rem;
+}
+
+.stat-label {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #f1f5f9;
+  margin-bottom: 0.45rem;
+}
+
+.stat-desc {
+  font-size: 0.81rem;
+  line-height: 1.5;
+  color: #cbd5e1;
+  margin-top: auto;
 }
 </style>
 <script>
@@ -275,7 +474,7 @@ shared_occurrences <- SharedData$new(all_occurrences)
     <div class="hero-eyebrow">Coral Sea Satellite Telemetry & Sightings</div>
     <h1 class="hero-title">Coral Sea Whale Sharks: Spottings & Observation Spans</h1>
     <p class="hero-subtitle">
-      Explore <strong>2,391 tracking and sighting records</strong> of <strong>Whale Sharks (<em>Rhincodon typus</em>)</strong> across Australia's Coral Sea — comparing 18 satellite-tagged individuals against a decade of opportunistic sightings. Select a graph tab below to explore the interactive scatter plot or the summary bar graphs.
+      Explore <strong>2,391 tracking and sighting records</strong> of <strong>Whale Sharks (<em>Rhincodon typus</em>)</strong> across Australia's Coral Sea — comparing 18 satellite-tagged individuals against a decade of opportunistic sightings.
     </p>
   </div>
 </div>
@@ -290,7 +489,7 @@ shared_occurrences <- SharedData$new(all_occurrences)
 ```{r}
 filter_slider(
   "span_filter",
-  "1. Pinpoint Observation Span (Months Elapsed):",
+  "Observation Span (Months):",
   shared_occurrences,
   ~months_elapsed,
   step = 1
@@ -301,7 +500,7 @@ filter_slider(
 ```{r}
 filter_slider(
   "spotting_filter",
-  "2. Pinpoint Spotting / Tracking Count:",
+  "Spotting Count:",
   shared_occurrences,
   ~spotting_num,
   step = 5
@@ -312,7 +511,7 @@ filter_slider(
 ```{r}
 filter_select(
   "name_filter",
-  "3. Filter by Common Name / Individual:",
+  "Whale Shark / Individual:",
   shared_occurrences,
   ~common_name
 )
@@ -322,7 +521,7 @@ filter_select(
 
 <div class="plot-card">
 <div class="plot-card-header">
-  <h2 class="plot-card-title">Cumulative Spottings & Trackings Over Observation Span (Months Elapsed)</h2>
+  <h2 class="plot-card-title">Cumulative Spottings Over Observation Span (Months)</h2>
 </div>
 ```{r}
 plot_ly(
@@ -331,8 +530,8 @@ plot_ly(
   y = ~spotting_num,
   color = ~group,
   colors = c(
-    "Satellite-Tagged Whale Sharks (18 Individuals)" = "#0f766e",
-    "Opportunistic Sightings (Coral Sea)" = "#0284c7"
+    "Satellite-Tagged Whale Sharks (18 Individuals)" = "#2dd4bf",
+    "Opportunistic Sightings (Coral Sea)" = "#ff8573"
   ),
   text = ~hover_text,
   hoverinfo = "text",
@@ -340,33 +539,49 @@ plot_ly(
   mode = "markers",
   width = "100%",
   height = 680,
-  marker = list(size = 6.5, opacity = 0.75)
+  marker = list(size = 6.5, opacity = 0.8)
 ) |>
   layout(
     autosize = TRUE,
-    paper_bgcolor = "#ffffff",
-    plot_bgcolor = "#f8fafc",
+    font = list(family = "Plus Jakarta Sans, sans-serif", color = "#f1f5f9"),
+    paper_bgcolor = "rgba(0,0,0,0)",
+    plot_bgcolor = "rgba(7, 20, 38, 0.45)",
     margin = list(t = 95, r = 25, b = 65, l = 70),
     xaxis = list(
-      title = "<b>Observation Span Elapsed (Months Since First Sighting)</b>",
-      gridcolor = "#e2e8f0",
-      zerolinecolor = "#cbd5e1",
+      title = list(text = "<b>Observation Span Elapsed (Months Since First Sighting)</b>", font = list(color = "#ffffff")),
+      gridcolor = "rgba(125, 211, 252, 0.12)",
+      zerolinecolor = "rgba(125, 211, 252, 0.28)",
+      tickfont = list(color = "#cbd5e1"),
       rangemode = "nonnegative",
       minallowed = 0,
       range = c(0, 135),
       tick0 = 0,
-      rangeslider = list(visible = TRUE, thickness = 0.08, bgcolor = "#f1f5f9", range = c(0, 135))
+      rangeslider = list(
+        visible = TRUE,
+        thickness = 0.08,
+        bgcolor = "rgba(9, 25, 46, 0.85)",
+        bordercolor = "rgba(125, 211, 252, 0.3)",
+        range = c(0, 135)
+      )
     ),
     yaxis = list(
-      title = "<b>Cumulative Spotting / Tracking Count</b>",
-      gridcolor = "#e2e8f0",
-      zerolinecolor = "#cbd5e1",
+      title = list(text = "<b>Cumulative Spotting / Tracking Count</b>", font = list(color = "#ffffff")),
+      gridcolor = "rgba(125, 211, 252, 0.12)",
+      zerolinecolor = "rgba(125, 211, 252, 0.28)",
+      tickfont = list(color = "#cbd5e1"),
       rangemode = "nonnegative",
       minallowed = 0,
       range = c(0, 450),
       tick0 = 0
     ),
-    legend = list(orientation = "h", x = 1, xanchor = "right", y = 1.12, yanchor = "bottom"),
+    legend = list(
+      orientation = "h",
+      x = 1,
+      xanchor = "right",
+      y = 1.12,
+      yanchor = "bottom",
+      font = list(color = "#f1f5f9")
+    ),
     updatemenus = list(
       list(
         type = "dropdown",
@@ -374,8 +589,9 @@ plot_ly(
         xanchor = "left",
         y = 1.02,
         yanchor = "bottom",
-        bgcolor = "#f8fafc",
-        bordercolor = "#cbd5e1",
+        bgcolor = "#0b1e36",
+        bordercolor = "rgba(125, 211, 252, 0.35)",
+        font = list(color = "#ffffff"),
         buttons = list(
           list(
             label = "View: All Timeframes (0–132 Months)",
@@ -434,7 +650,7 @@ plot_ly(
 
 <div class="plot-card" style="margin-bottom: 1.75rem;">
 <div class="plot-card-header">
-  <h2 class="plot-card-title">Seasonal Activity by Calendar Month (Jan–Dec)</h2>
+  <h2 class="plot-card-title">Seasonal Activity by Month</h2>
 </div>
 ```{r}
 monthly_summary <- all_occurrences |>
@@ -461,8 +677,8 @@ plot_ly(
   y = ~monthly_spottings,
   color = ~group,
   colors = c(
-    "Satellite-Tagged Whale Sharks (18 Individuals)" = "#0f766e",
-    "Opportunistic Sightings (Coral Sea)" = "#0284c7"
+    "Satellite-Tagged Whale Sharks (18 Individuals)" = "#2dd4bf",
+    "Opportunistic Sightings (Coral Sea)" = "#ff8573"
   ),
   text = ~month_hover,
   hoverinfo = "text",
@@ -473,21 +689,24 @@ plot_ly(
   layout(
     barmode = "group",
     autosize = TRUE,
-    paper_bgcolor = "#ffffff",
-    plot_bgcolor = "#f8fafc",
+    font = list(family = "Plus Jakarta Sans, sans-serif", color = "#f1f5f9"),
+    paper_bgcolor = "rgba(0,0,0,0)",
+    plot_bgcolor = "rgba(7, 20, 38, 0.45)",
     margin = list(t = 50, r = 25, b = 70, l = 70),
     xaxis = list(
-      title = "<b>Calendar Month of the Year</b>",
-      gridcolor = "#e2e8f0"
+      title = list(text = "<b>Calendar Month of the Year</b>", font = list(color = "#ffffff")),
+      tickfont = list(color = "#cbd5e1"),
+      gridcolor = "rgba(125, 211, 252, 0.12)"
     ),
     yaxis = list(
-      title = "<b>Total Recorded Spottings / Transmissions</b>",
-      gridcolor = "#e2e8f0",
-      zerolinecolor = "#cbd5e1",
+      title = list(text = "<b>Total Recorded Spottings / Transmissions</b>", font = list(color = "#ffffff")),
+      tickfont = list(color = "#cbd5e1"),
+      gridcolor = "rgba(125, 211, 252, 0.12)",
+      zerolinecolor = "rgba(125, 211, 252, 0.28)",
       rangemode = "nonnegative",
       minallowed = 0
     ),
-    legend = list(orientation = "h", x = 1, xanchor = "right", y = 1.04, yanchor = "bottom")
+    legend = list(orientation = "h", x = 1, xanchor = "right", y = 1.04, yanchor = "bottom", font = list(color = "#f1f5f9"))
   ) |>
   config(responsive = TRUE)
 ```
@@ -495,7 +714,7 @@ plot_ly(
 
 <div class="plot-card">
 <div class="plot-card-header">
-  <h2 class="plot-card-title">Total Detections by Individual Whale Shark (With Span in Months)</h2>
+  <h2 class="plot-card-title">Total Detections by Individual Whale Shark</h2>
 </div>
 ```{r}
 organism_summary <- all_occurrences |>
@@ -524,8 +743,8 @@ plot_ly(
   y = ~total_spottings,
   color = ~group,
   colors = c(
-    "Satellite-Tagged Whale Sharks (18 Individuals)" = "#0f766e",
-    "Opportunistic Sightings (Coral Sea)" = "#0284c7"
+    "Satellite-Tagged Whale Sharks (18 Individuals)" = "#2dd4bf",
+    "Opportunistic Sightings (Coral Sea)" = "#ff8573"
   ),
   text = ~bar_hover,
   hoverinfo = "text",
@@ -535,26 +754,107 @@ plot_ly(
 ) |>
   layout(
     autosize = TRUE,
-    paper_bgcolor = "#ffffff",
-    plot_bgcolor = "#f8fafc",
+    font = list(family = "Plus Jakarta Sans, sans-serif", color = "#f1f5f9"),
+    paper_bgcolor = "rgba(0,0,0,0)",
+    plot_bgcolor = "rgba(7, 20, 38, 0.45)",
     margin = list(t = 50, r = 25, b = 140, l = 70),
     xaxis = list(
       title = "",
       tickangle = -35,
-      gridcolor = "#e2e8f0"
+      tickfont = list(color = "#cbd5e1"),
+      gridcolor = "rgba(125, 211, 252, 0.12)"
     ),
     yaxis = list(
-      title = "<b>Total Recorded Spottings / Transmissions</b>",
-      gridcolor = "#e2e8f0",
-      zerolinecolor = "#cbd5e1",
+      title = list(text = "<b>Total Recorded Spottings / Transmissions</b>", font = list(color = "#ffffff")),
+      tickfont = list(color = "#cbd5e1"),
+      gridcolor = "rgba(125, 211, 252, 0.12)",
+      zerolinecolor = "rgba(125, 211, 252, 0.28)",
       rangemode = "nonnegative",
       minallowed = 0,
       range = c(0, 460)
     ),
-    legend = list(orientation = "h", x = 1, xanchor = "right", y = 1.04, yanchor = "bottom")
+    legend = list(orientation = "h", x = 1, xanchor = "right", y = 1.04, yanchor = "bottom", font = list(color = "#f1f5f9"))
   ) |>
   config(responsive = TRUE)
 ```
 </div>
 
 :::
+
+```{=html}
+<!-- Key Findings at a Glance Section -->
+<div class="findings-section" style="margin-top: 2rem;">
+  <div class="findings-header">
+    <div class="findings-title-group">
+      <div class="findings-eyebrow">Telemetry &amp; Research Highlights</div>
+      <h2>Key Findings at a Glance</h2>
+      <p class="findings-subtitle">
+        Core empirical metrics from the CSIRO Coral Sea telemetry dataset and published research findings.
+      </p>
+    </div>
+  </div>
+
+  <div class="findings-category-header">
+    <span class="category-tag dataset">Original Dataset Records</span>
+    <span class="category-note">Direct telemetry and sighting data analyzed in this study</span>
+  </div>
+
+  <div class="stat-grid-4">
+    <div class="stat-card card-accent-blue">
+      <span class="stat-badge badge-raw">Full Dataset</span>
+      <div class="stat-number">2,391</div>
+      <div class="stat-label">Total Records</div>
+      <div class="stat-desc">Georeferenced spatial points recorded between 2007 and 2024 across the Coral Sea and western Pacific.</div>
+    </div>
+
+    <div class="stat-card card-accent-teal">
+      <span class="stat-badge badge-raw">Argos Uplinks</span>
+      <div class="stat-number">2,255</div>
+      <div class="stat-label">Satellite Tracking Records</div>
+      <div class="stat-desc">Argos satellite transmissions received whenever sharks surfaced.</div>
+    </div>
+
+    <div class="stat-card card-accent-coral">
+      <span class="stat-badge badge-raw">Citizen Science &amp; Charters</span>
+      <div class="stat-number">136</div>
+      <div class="stat-label">Historical &amp; Opportunistic Sightings</div>
+      <div class="stat-desc">Baseline records from dive vessels, charters, and citizen scientists (2007–2018).</div>
+    </div>
+
+    <div class="stat-card card-accent-indigo">
+      <span class="stat-badge badge-raw">Tagged Cohort</span>
+      <div class="stat-number">18</div>
+      <div class="stat-label">Satellite-Tagged Whale Sharks</div>
+      <div class="stat-desc">Sharks tagged at Wreck Bay and outer reefs (2018–2023) to map movement pathways.</div>
+    </div>
+  </div>
+
+  <div class="findings-category-header" style="margin-top: 1.5rem;">
+    <span class="category-tag paper">Published Research Findings</span>
+    <span class="category-note">Key metrics reported in published Coral Sea whale shark research</span>
+  </div>
+
+  <div class="stat-grid-3">
+    <div class="stat-card card-accent-cyan">
+      <span class="stat-badge badge-research">Photo-ID Catalog</span>
+      <div class="stat-number">59</div>
+      <div class="stat-label">Individually Identified Sharks</div>
+      <div class="stat-desc">Whale sharks cataloged using spot-pattern recognition across surveys and photo encounters.</div>
+    </div>
+
+    <div class="stat-card card-accent-emerald">
+      <span class="stat-badge badge-research">Aggregation Residence</span>
+      <div class="stat-number">21.6 Days</div>
+      <div class="stat-label">Average Residence Time</div>
+      <div class="stat-desc">Mean duration individual whale sharks remained within the Wreck Bay aggregation site.</div>
+    </div>
+
+    <div class="stat-card card-accent-teal">
+      <span class="stat-badge badge-research">Satellite Telemetry</span>
+      <div class="stat-number">1,463 km</div>
+      <div class="stat-label">Average Total Track Length</div>
+      <div class="stat-desc">Mean cumulative distance traveled by satellite-tracked individuals across the Coral Sea.</div>
+    </div>
+  </div>
+</div>
+```
