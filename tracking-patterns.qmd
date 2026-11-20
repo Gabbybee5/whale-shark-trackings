@@ -787,7 +787,7 @@ tags$script(
 <div id="ws-trajectory-map" style="width: 100%; height: 620px; border-radius: 12px; border: 1px solid rgba(56, 189, 248, 0.28);"></div>
 
 <div class="map-caption">
-  <strong>How to Explore:</strong> On load, the map displays <strong>all 18 satellite-tracked movement trajectories</strong> (<span style="color:#2dd4bf;font-weight:600;">turquoise tracks</span>) alongside <strong>136 opportunistic sightings</strong> (<span style="color:#ff8573;font-weight:600;">coral markers</span>). Select any individual shark from the dropdown above to isolate its migration path across the Coral Sea and inspect its individual GPS surface fixes.
+  <strong>How to Explore:</strong> On load, the map displays <strong>all 18 satellite-tracked movement trajectories</strong> (<span style="color:#2dd4bf;font-weight:600;">turquoise tracks</span>) alongside <strong>136 historical sightings</strong> (<span style="color:#ff8573;font-weight:600;">coral markers</span>). Select any individual shark from the dropdown above to isolate its migration path across the Coral Sea and inspect its individual GPS surface fixes.
 </div>
 ```
 
@@ -1053,7 +1053,7 @@ document.addEventListener("DOMContentLoaded", function () {
     div.style.lineHeight = "1.5";
     div.innerHTML =
       "<b>Sighting Key</b><br>" +
-      "<span style='display:inline-block;width:10px;height:10px;border-radius:50%;background:#ff8573;border:1.5px solid #e11d48;margin-right:6px;'></span>Historical Sighting<br>" +
+      "<span style='display:inline-block;width:10px;height:10px;border-radius:50%;background:#ff8573;border:1.5px solid #e11d48;margin-right:6px;'></span>Historical Sightings<br>" +
       "<span style='display:inline-block;width:10px;height:10px;border-radius:50%;background:#2dd4bf;border:1.5px solid #0891b2;margin-right:6px;'></span>Satellite Tracking<br>" +
       "<span style='display:inline-block;width:54px;height:8px;border-radius:4px;background:linear-gradient(90deg,#06b6d4,#2dd4bf,#ff8573,#fb7185);margin-right:6px;'></span>Density";
     return div;
@@ -1234,7 +1234,7 @@ document.addEventListener("DOMContentLoaded", function () {
         "<b>Trajectory Key</b><br>" +
         "<span style='display:inline-block;width:16px;height:3px;background:#2dd4bf;border-radius:2px;margin-right:6px;vertical-align:middle;'></span>Satellite Trajectory Track<br>" +
         "<span style='display:inline-block;width:9px;height:9px;border-radius:50%;background:#2dd4bf;border:1.5px solid #0891b2;margin-right:6px;'></span>Satellite GPS Point (2,255)<br>" +
-        "<span style='display:inline-block;width:9px;height:9px;border-radius:50%;background:#ff8573;border:1.5px solid #e11d48;margin-right:6px;'></span>Opportunistic Sighting (136)<br>" +
+        "<span style='display:inline-block;width:9px;height:9px;border-radius:50%;background:#ff8573;border:1.5px solid #e11d48;margin-right:6px;'></span>Historical Sightings (136)<br>" +
         "<span style='display:inline-block;width:9px;height:9px;border-radius:50%;background:#2dd4bf;border:2px solid #10b981;margin-right:6px;'></span>Start Point &bull; <span style='display:inline-block;width:9px;height:9px;border-radius:50%;background:#06b6d4;border:2px solid #38bdf8;margin-right:6px;'></span>Latest Point";
       return div;
     };
@@ -1443,6 +1443,29 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Initial render of Tab 1
     updateTrajMap();
+
+    // Check URL parameters to link directly to an individual shark's tracking
+    const urlParams = new URLSearchParams(window.location.search);
+    let requestedShark = urlParams.get("shark");
+    if (!requestedShark && window.location.hash) {
+      const hashMatch = window.location.hash.match(/shark=([^&]+)/i);
+      if (hashMatch) requestedShark = decodeURIComponent(hashMatch[1]);
+    }
+    if (requestedShark) {
+      const matchedShark = Object.keys(sharkTracks).find(
+        name => name.toLowerCase() === requestedShark.toLowerCase()
+      );
+      if (matchedShark) {
+        trajSelect.value = matchedShark;
+        updateTrajMap();
+        setTimeout(function () {
+          const mapEl = document.getElementById("ws-trajectory-map");
+          if (mapEl) {
+            mapEl.scrollIntoView({ behavior: "smooth", block: "center" });
+          }
+        }, 250);
+      }
+    }
   }
 
   // Ensure both Leaflet maps resize and fit bounds properly when switching tabs
