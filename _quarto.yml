@@ -2,9 +2,9 @@ project:
   type: website
   output-dir: _site
   render:
+    - tracking-patterns.qmd
     - overview.qmd
     - about.qmd
-    - tracking-patterns.qmd
     - meet-the-sharks.qmd
     - research-process.qmd
     - ecology-conservation.qmd
@@ -15,10 +15,10 @@ website:
     background: "#0b1e36"
     foreground: "#f1f5f9"
     left:
-      - href: overview.qmd
-        text: "Overview"
       - href: tracking-patterns.qmd
         text: "Tracking Patterns"
+      - href: overview.qmd
+        text: "Tracking Data"
       - href: meet-the-sharks.qmd
         text: "Meet the Sharks"
       - href: research-process.qmd

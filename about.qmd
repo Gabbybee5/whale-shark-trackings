@@ -183,7 +183,7 @@ main.content.page-columns {
     <div class="hero-eyebrow">About &amp; Author</div>
     <h1 class="hero-title">About This Project</h1>
     <p class="hero-subtitle">
-      Created by <strong>Gabriella Buccellato</strong> at <a href="https://www.ncf.edu/" target="_blank" rel="noopener" style="color:#7dd3fc;text-decoration:underline;">New College of Florida</a> — exploring why researchers tagged whale sharks in northeastern Australia and what makes this corner of the Coral Sea unique.
+      Created by <strong>Gabriella Buccellato</strong> at <a href="https://www.ncf.edu/" target="_blank" rel="noopener" style="color:#7dd3fc;text-decoration:underline;">New College of Florida</a> — author background and data sources for the Coral Sea whale shark telemetry project.
     </p>
   </div>
 </div>
@@ -200,34 +200,6 @@ main.content.page-columns {
 - **Institution:** [New College of Florida](https://www.ncf.edu/)
 
 </div>
-
-<div class="info-card">
-
-## Why Were the Whale Sharks Tracked?
-
-Whale sharks (*Rhincodon typus*) are globally **Endangered**. Researchers combined citizen-science sightings (2007–2024, via *Sharkbook* and *Eye on the Reef*) with satellite tags on **18 individual sharks** (2018–2023) to answer key conservation questions:
-
-- **Mapping Hidden Migrations:** Satellite telemetry reveals whether sharks stay on local reefs year-round or roam across deep ocean basins toward Papua New Guinea and the wider Indo-Pacific.
-- **Guiding Marine Protection:** Tracking where sharks surface helps pinpoint overlaps with shipping lanes, fishing activity, and protected zones inside the Great Barrier Reef and Coral Sea Marine Parks.
-
-</div>
-
-```{=html}
-<div class="split-card">
-  <div class="split-card-body">
-    <h2>Why Were They Recorded in This Specific Area?</h2>
-    <p>Only about 30 whale shark aggregation sites are known worldwide, and until recently <strong>none</strong> had been confirmed anywhere on Australia's east coast or in the southwest Pacific:</p>
-    <ul>
-      <li><strong>The Wreck Bay Discovery:</strong> Sightings and tagging centered on <strong>Wreck Bay</strong> at the northern Great Barrier Reef—the first whale shark aggregation documented in eastern Australia.</li>
-      <li><strong>A Seasonal Feeding Hotspot:</strong> Steep outer-reef drop-offs meet nutrient-rich upwellings. During late spring and austral summer (November–December), coral and fish spawning events trigger dense plankton blooms that draw whale sharks to the surface in predictable numbers, giving researchers a window to find and tag them.</li>
-    </ul>
-  </div>
-  <div class="split-card-media">
-    <img src="images/kevin-charit-bZc2GI4LR2Q-unsplash.jpg" alt="Two whale sharks aggregating near the ocean surface">
-    <div class="split-card-caption">Seasonal surface feeding brings multiple whale sharks together into sunlit Coral Sea waters.</div>
-  </div>
-</div>
-```
 
 <div class="info-card">
 

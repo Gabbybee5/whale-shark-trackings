@@ -283,15 +283,41 @@ main.content.page-columns {
 }
 
 .shark-avatar {
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
-  background: linear-gradient(135deg, #0d3b66 0%, #0f766e 100%);
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  border: 2px solid rgba(125, 211, 252, 0.4);
+  background: #07192f;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+  overflow: hidden;
+}
+
+.shark-avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.meta-chip.sharkbook-chip {
+  background: rgba(14, 165, 233, 0.18);
+  border-color: rgba(125, 211, 252, 0.45);
+  color: #7dd3fc;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  transition: all 0.15s ease;
+}
+
+.meta-chip.sharkbook-chip:hover {
+  background: rgba(14, 165, 233, 0.35);
+  color: #ffffff;
+  border-color: #38bdf8;
 }
 
 .shark-subsection h3 {
@@ -812,6 +838,27 @@ function toggleFavorite(sharkId, btnEl) {
   syncPillHearts();
 }
 
+const SHARKBOOK_ENCOUNTERS = {
+  'megashark': { gbrId: 'GBR-047', uuid: '5803be05-89e5-49b8-a917-e23ad069c9c0' },
+  'alexios': { gbrId: 'GBR-009', uuid: '46c4f0dc-6306-4b1d-bd97-33d6c31f8126' },
+  'ali': { gbrId: 'GBR-006', uuid: '000588bf-460f-49c7-99b9-fe9a0801640f' },
+  'sharpie': { gbrId: 'GBR-049', uuid: '40ffbc23-2cd3-4979-854e-5574413257f3' },
+  'juanita': null,
+  'gbr1': null,
+  'beizam': { gbrId: 'GBR-051', uuid: '4b093b96-e374-4071-a16a-6e1a100f3f77' },
+  'blancpain': { gbrId: 'GBR-007', uuid: '83bb78b7-8d13-41e5-b7c3-56061ba8ecee' },
+  'gbr2': { gbrId: 'GBR-066', uuid: '2a696b10-69a7-43c7-945b-dd937884b615' },
+  'infamis': { gbrId: 'GBR-056', uuid: '3217982d-c99c-4b0b-a0f7-0c2a11a7bddd' },
+  'jaap': { gbrId: 'GBR-068', uuid: 'c85aa324-012b-42df-9d93-953b4de5e787' },
+  'halliday': { gbrId: 'GBR-059', uuid: 'f218f87b-236c-461a-9f46-22c28de20dc6' },
+  'hugh': { gbrId: 'GBR-046', uuid: '219a61d9-c57f-4319-a06f-c2854c681e2a' },
+  'fifty_fathoms': { gbrId: 'GBR-001', uuid: '9cf2da54-28d2-448b-acfa-ea285aec362c' },
+  'sapphire': { gbrId: 'GBR-053', uuid: 'd7ffb68e-1196-41de-a54e-42a495a0101b' },
+  'andrew': { gbrId: 'GBR-050', uuid: '06c0fccf-d4c9-4c37-ab8b-2127332a1a59' },
+  'dotti': { gbrId: 'GBR-069', uuid: 'bee933e8-d64b-4d95-8556-db45c182c71a' },
+  'ambitious': { gbrId: 'GBR-067', uuid: 'b5c2190e-d2f0-4aa1-93d8-f18c96b252b3' }
+};
+
 const SHARK_COMPARE_DATA = [
   { id: 'megashark', name: 'Megashark', tag: '252324', sex: 'Male', maturity: 'Immature', pings: 423, months: 13.0, days: 398, km: 6073, lats: '16.5°S to 9.7°S', pattern: 'Highest cumulative transmissions; steep summer rise, 49-day winter offshore gap, late-year surge.' },
   { id: 'alexios', name: 'Alexios', tag: '178953', sex: 'Male', maturity: 'Immature', pings: 357, months: 5.2, days: 159, km: 4307, lats: '18.1°S to 11.1°S', pattern: 'Steady, uninterrupted surface tracking (max gap ≤13 days) along outer Great Barrier Reef corridor.' },
@@ -872,8 +919,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
       const avatar = document.createElement('div');
       avatar.className = 'shark-avatar';
-      avatar.style.background = AVATAR_GRADIENTS[idx % AVATAR_GRADIENTS.length];
-      avatar.innerHTML = whaleSharkSvg();
+
+      const avatarImg = document.createElement('img');
+      avatarImg.className = 'shark-avatar-img';
+      avatarImg.src = 'images/sharks/' + sid + '.jpg';
+      avatarImg.alt = h3.textContent.split('(')[0].trim() + ' profile photo';
+      avatarImg.onerror = function() {
+        this.style.display = 'none';
+        avatar.innerHTML = whaleSharkSvg();
+        avatar.style.background = AVATAR_GRADIENTS[idx % AVATAR_GRADIENTS.length];
+      };
+      avatar.appendChild(avatarImg);
 
       h3.parentNode.insertBefore(header, h3);
       identity.appendChild(avatar);
@@ -887,6 +943,19 @@ document.addEventListener('DOMContentLoaded', function() {
       favBtn.innerHTML = isFav ? '❤️ Favorited' : '🤍 Favorite';
       favBtn.onclick = function() { toggleFavorite(sid, favBtn); };
       header.appendChild(favBtn);
+    }
+
+    const sb = SHARKBOOK_ENCOUNTERS[sid];
+    const metaContainer = sec.querySelector('.shark-meta');
+    if (metaContainer && sb) {
+      const sbLink = document.createElement('a');
+      sbLink.className = 'meta-chip sharkbook-chip';
+      sbLink.href = 'https://www.sharkbook.ai/encounters/encounter.jsp?number=' + sb.uuid;
+      sbLink.target = '_blank';
+      sbLink.rel = 'noopener noreferrer';
+      sbLink.title = 'View encounter photo identification on Sharkbook';
+      sbLink.innerHTML = '📷 ' + sb.gbrId + ' Photo Record ↗';
+      metaContainer.appendChild(sbLink);
     }
 
     const pingPct = Math.max(5, Math.min(100, Math.round((pings / 423) * 100)));

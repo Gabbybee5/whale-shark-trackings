@@ -377,6 +377,52 @@ main.content.page-columns {
   color: #f1f5f9 !important;
 }
 
+.leaflet-control-layers-overlays {
+  max-height: 280px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+/* Trajectory Shark Selection Controls */
+.traj-chip {
+  font-family: inherit;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #cbd5e1;
+  background: rgba(9, 25, 46, 0.65);
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  border-radius: 999px;
+  padding: 0.3rem 0.72rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  transition: all 0.15s ease;
+  user-select: none;
+  --chip-color: var(--ocean-cyan, #22d3ee);
+}
+
+.traj-chip:hover {
+  border-color: var(--chip-color);
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.traj-chip.active {
+  color: #ffffff;
+  background: rgba(9, 25, 46, 0.85);
+  border-color: var(--chip-color);
+  box-shadow: 0 0 10px rgba(34, 211, 238, 0.22);
+}
+
+.traj-chip-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
 .leaflet-bar a {
   background: rgba(9, 25, 46, 0.9) !important;
   color: #ffffff !important;
@@ -716,35 +762,60 @@ shark_map <- leaflet(width = "100%", height = "620px") |>
   addProviderTiles(providers$Esri.OceanBasemap, group = "Bathymetric Ocean Map")
 
 tagged_sharks <- tagged_points |> split(~shark_name)
+shark_names <- sort(names(tagged_sharks))
 
-for (shark_df in tagged_sharks) {
+shark_palette <- c(
+  "Alexios"       = "#22d3ee",  # Electric Ocean Cyan
+  "Ali"           = "#2dd4bf",  # Ocean Turquoise (farthest migrant to PNG)
+  "Ambitious"     = "#fbbf24",  # Sunlit Reef Amber
+  "Andrew"        = "#60a5fa",  # Pelagic Sapphire Blue
+  "Beizam"        = "#38bdf8",  # Sky Pelagic Azure
+  "Blancpain"     = "#5eead4",  # Bright Barrier Reef Seafoam
+  "Dotti"         = "#a78bfa",  # Twilight Pelagic Violet
+  "Fifty_Fathoms" = "#818cf8",  # Bioluminescent Deep-Sea Indigo
+  "GBR1"          = "#34d399",  # Reef Emerald Green
+  "GBR2"          = "#f97316",  # Warm Coral Sunset
+  "Halliday"      = "#fb7185",  # Coral Rose
+  "Hugh"          = "#67e8f9",  # Electric Aqua
+  "Infamis"       = "#fcd34d",  # Golden Reef Sand
+  "Jaap"          = "#2ee59d",  # Mint Seafoam
+  "Juanita"       = "#06b6d4",  # Deep Cerulean Marine
+  "Megashark"     = "#93c5fd",  # Glacier Ocean Blue
+  "Sapphire"      = "#3b82f6",  # Vibrant Sapphire Blue
+  "Sharpie"       = "#fda4af"   # Coral Shell Pink
+)
+shark_palette <- shark_palette[shark_names]
+
+for (s_name in shark_names) {
+  shark_df <- tagged_sharks[[s_name]] |> arrange(date, id)
+  s_col <- shark_palette[[s_name]]
   shark_map <- shark_map |>
     addPolylines(
       data = shark_df,
       lng = ~decimalLongitude,
       lat = ~decimalLatitude,
-      color = "#22d3ee",
-      weight = 2.2,
-      opacity = 0.65,
-      group = "Satellite Trajectories (18 Sharks)",
-      label = ~paste0("Track: Whale Shark (", shark_name, ")")
+      color = s_col,
+      weight = 2.4,
+      opacity = 0.75,
+      group = s_name,
+      label = ~paste0("Track: Whale Shark (", s_name, ")")
+    ) |>
+    addCircleMarkers(
+      data = shark_df,
+      lng = ~decimalLongitude,
+      lat = ~decimalLatitude,
+      radius = 4.5,
+      color = s_col,
+      fillColor = s_col,
+      fillOpacity = 0.85,
+      weight = 1,
+      popup = ~popup_html,
+      label = ~paste0("Whale Shark (", s_name, ") — ", date),
+      group = s_name
     )
 }
 
 shark_map <- shark_map |>
-  addCircleMarkers(
-    data = tagged_points,
-    lng = ~decimalLongitude,
-    lat = ~decimalLatitude,
-    radius = 4.5,
-    color = "#0891b2",
-    fillColor = "#2dd4bf",
-    fillOpacity = 0.85,
-    weight = 1,
-    popup = ~popup_html,
-    label = ~paste0("Whale Shark (", shark_name, ") — ", date),
-    group = "Satellite Tag Points (2,255 pts)"
-  ) |>
   addCircleMarkers(
     data = sighting_points,
     lng = ~decimalLongitude,
@@ -760,11 +831,10 @@ shark_map <- shark_map |>
   ) |>
   addLegend(
     position = "bottomright",
-    colors = c("#2dd4bf", "#22d3ee", "#ff8573"),
+    colors = c("#2dd4bf", "#ff8573"),
     labels = c(
-      "Satellite Tag Points (2,255)",
-      "Individual Shark Trajectories (18)",
-      "Opportunistic Sightings (136)"
+      "Satellite Tag Tracks & Points (18 Sharks)",
+      "Opportunistic Sightings (136 pts)"
     ),
     title = "Coral Sea Whale Sharks",
     opacity = 0.92
@@ -772,11 +842,10 @@ shark_map <- shark_map |>
   addLayersControl(
     baseGroups = c("Dark Ocean Basemap", "Bathymetric Ocean Map"),
     overlayGroups = c(
-      "Satellite Tag Points (2,255 pts)",
-      "Satellite Trajectories (18 Sharks)",
-      "Opportunistic Sightings (136 pts)"
+      "Opportunistic Sightings (136 pts)",
+      shark_names
     ),
-    options = layersControlOptions(collapsed = FALSE)
+    options = layersControlOptions(collapsed = TRUE)
   ) |>
   fitBounds(
     lng1 = min(whale_shark_map$decimalLongitude) - 0.8,
@@ -803,10 +872,21 @@ ws_json_data <- whale_shark_map |>
     popup = popup_html
   )
 
+shark_meta_data <- tibble(
+  name = shark_names,
+  color = unname(shark_palette[shark_names])
+)
+
 tags$script(
   id = "ws-sightings-json",
   type = "application/json",
   HTML(toJSON(ws_json_data, auto_unbox = TRUE))
+)
+
+tags$script(
+  id = "ws-shark-meta-json",
+  type = "application/json",
+  HTML(toJSON(shark_meta_data, auto_unbox = TRUE))
 )
 ```
 
@@ -814,17 +894,47 @@ tags$script(
 
 ## 1. Coral Sea Trajectory Overview
 
-<div class="map-card">
-<div class="map-card-header">
+::: {.map-card}
+
+```{=html}
+<div class="map-card-header" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.75rem;">
   <h2 class="map-card-title">Coral Sea Whale Shark Trajectories & Sightings (Australia & Papua New Guinea)</h2>
+  <span id="traj-selection-badge" class="ws-date-badge">18 of 18 sharks visible</span>
 </div>
+
+<div class="ws-controls-panel" style="margin-bottom: 1.25rem;">
+  <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 0.75rem; margin-bottom: 0.85rem;">
+    <div style="display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap;">
+      <span class="ws-toggle-label" style="font-weight:700;">Select Individual Shark:</span>
+      <select id="traj-shark-select" style="background: rgba(9, 25, 46, 0.85); color: #f1f5f9; border: 1px solid rgba(125, 211, 252, 0.3); border-radius: 8px; padding: 0.42rem 0.85rem; font-size: 0.88rem; font-family: inherit;">
+        <option value="all">-- All Tagged Sharks (18 Individuals) --</option>
+        <option value="" disabled hidden>-- Multiple Sharks Selected --</option>
+      </select>
+      <button type="button" class="ws-btn" id="traj-btn-all">Select All</button>
+      <button type="button" class="ws-btn" id="traj-btn-clear">Deselect All</button>
+    </div>
+  </div>
+
+  <div>
+    <span class="ws-toggle-label" style="font-size: 0.76rem; display: block; margin-bottom: 0.45rem;">
+      Toggle individual or multiple sharks (click to compare):
+    </span>
+    <div id="traj-shark-chips" style="display: flex; flex-wrap: wrap; gap: 0.45rem;"></div>
+  </div>
+</div>
+```
+
 ```{r}
 shark_map
 ```
+
+```{=html}
 <div class="map-caption">
-  <strong>Spatial Pattern:</strong> <strong>2,391 GPS & sighting points</strong> stretch from southern Queensland (<code>27.9° S</code>) across the Great Barrier Reef and Coral Sea into Papua New Guinea (<code>6.3° S</code>). Click any point for individual shark details.
+  <strong>Spatial Pattern:</strong> <strong>2,391 GPS & sighting points</strong> stretch from southern Queensland (<code>27.9° S</code>) across the Great Barrier Reef and Coral Sea into Papua New Guinea (<code>6.3° S</code>). Use the dropdown to isolate any single shark, or click multiple shark badges to compare their movement trajectories. Click any point for individual shark details.
 </div>
-</div>
+```
+
+:::
 
 ## 2. Interactive Whale Shark Map
 
@@ -1249,6 +1359,163 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   updateMap();
+
+  // ----------------------------------------------------
+  // Trajectory Overview Multi-Shark Selector Logic
+  // ----------------------------------------------------
+  const sharkMetaEl = document.getElementById("ws-shark-meta-json");
+  const sharkMeta = sharkMetaEl ? JSON.parse(sharkMetaEl.textContent) : [];
+  const sharkNames = sharkMeta.map(s => s.name);
+  const sharkColorMap = {};
+  sharkMeta.forEach(s => { sharkColorMap[s.name] = s.color; });
+
+  const trajSelect = document.getElementById("traj-shark-select");
+  const trajChipsContainer = document.getElementById("traj-shark-chips");
+  const trajBadge = document.getElementById("traj-selection-badge");
+  const trajBtnAll = document.getElementById("traj-btn-all");
+  const trajBtnClear = document.getElementById("traj-btn-clear");
+
+  if (trajSelect && trajChipsContainer && sharkNames.length) {
+    // Populate dropdown with all individual sharks
+    sharkNames.forEach(name => {
+      const opt = document.createElement("option");
+      opt.value = name;
+      opt.textContent = name;
+      trajSelect.appendChild(opt);
+    });
+
+    // Populate interactive chips for multi-selection
+    sharkNames.forEach(name => {
+      const chip = document.createElement("button");
+      chip.type = "button";
+      chip.className = "traj-chip active";
+      chip.setAttribute("data-shark", name);
+      const chipCol = sharkColorMap[name] || '#22d3ee';
+      chip.style.setProperty("--chip-color", chipCol);
+      chip.innerHTML = `<span class="traj-chip-dot" style="background:${chipCol};"></span>${name}`;
+      trajChipsContainer.appendChild(chip);
+    });
+
+    let isProgrammatic = false;
+
+    function getOverlayInputs() {
+      const tab1 = document.querySelector("#tabset-1-1, .tab-pane:first-child");
+      const root = tab1 || document;
+      const inputs = {};
+      root.querySelectorAll(".leaflet-control-layers-overlays label").forEach(label => {
+        const text = label.textContent.trim();
+        const input = label.querySelector('input[type="checkbox"]');
+        if (input && text) {
+          inputs[text] = input;
+        }
+      });
+      return inputs;
+    }
+
+    function setSharkVisibility(name, visible) {
+      const inputs = getOverlayInputs();
+      const input = inputs[name];
+      if (input && input.checked !== visible) {
+        isProgrammatic = true;
+        input.click();
+        isProgrammatic = false;
+      }
+    }
+
+    function updateTrajUIFromState(activeSet) {
+      // Sync chip active classes
+      trajChipsContainer.querySelectorAll(".traj-chip").forEach(chip => {
+        const name = chip.getAttribute("data-shark");
+        chip.classList.toggle("active", activeSet.has(name));
+      });
+
+      // Sync status badge
+      if (trajBadge) {
+        if (activeSet.size === sharkNames.length) {
+          trajBadge.textContent = "18 of 18 sharks visible";
+        } else if (activeSet.size === 1) {
+          trajBadge.textContent = `Showing 1 shark: ${[...activeSet][0]}`;
+        } else if (activeSet.size === 0) {
+          trajBadge.textContent = "No sharks selected";
+        } else {
+          trajBadge.textContent = `${activeSet.size} of 18 sharks visible`;
+        }
+      }
+
+      // Sync dropdown value
+      if (activeSet.size === sharkNames.length) {
+        trajSelect.value = "all";
+      } else if (activeSet.size === 1) {
+        trajSelect.value = [...activeSet][0];
+      } else {
+        trajSelect.value = "";
+      }
+    }
+
+    function syncState() {
+      if (isProgrammatic) return;
+      const inputs = getOverlayInputs();
+      const activeSet = new Set();
+      sharkNames.forEach(name => {
+        if (inputs[name] && inputs[name].checked) {
+          activeSet.add(name);
+        }
+      });
+      updateTrajUIFromState(activeSet);
+    }
+
+    function attachLayerListeners() {
+      const inputs = getOverlayInputs();
+      if (!Object.keys(inputs).length) {
+        setTimeout(attachLayerListeners, 120);
+        return;
+      }
+      Object.values(inputs).forEach(input => {
+        input.addEventListener("change", syncState);
+      });
+      syncState();
+    }
+    attachLayerListeners();
+
+    // Dropdown change handler (single shark or all)
+    trajSelect.addEventListener("change", function () {
+      const val = this.value;
+      if (val === "all") {
+        sharkNames.forEach(name => setSharkVisibility(name, true));
+        updateTrajUIFromState(new Set(sharkNames));
+      } else if (val) {
+        sharkNames.forEach(name => setSharkVisibility(name, name === val));
+        updateTrajUIFromState(new Set([val]));
+      }
+    });
+
+    // Chip click handler for multi-selection toggle
+    trajChipsContainer.addEventListener("click", function (e) {
+      const chip = e.target.closest(".traj-chip");
+      if (!chip) return;
+      const name = chip.getAttribute("data-shark");
+      const inputs = getOverlayInputs();
+      const isCurrentlyChecked = inputs[name] ? inputs[name].checked : chip.classList.contains("active");
+      setSharkVisibility(name, !isCurrentlyChecked);
+      syncState();
+    });
+
+    // Select all button
+    if (trajBtnAll) {
+      trajBtnAll.addEventListener("click", function () {
+        sharkNames.forEach(name => setSharkVisibility(name, true));
+        updateTrajUIFromState(new Set(sharkNames));
+      });
+    }
+
+    // Deselect all button
+    if (trajBtnClear) {
+      trajBtnClear.addEventListener("click", function () {
+        sharkNames.forEach(name => setSharkVisibility(name, false));
+        updateTrajUIFromState(new Set());
+      });
+    }
+  }
 });
 </script>
 ```
